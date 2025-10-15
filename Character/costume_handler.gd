@@ -23,13 +23,17 @@ class_name CostumeHandler
 @export var right_leg_sprite : Sprite2D
 @export var full_outfit_sprite : Sprite2D
 
+func rand_chance(probability: float) -> bool:
+	return randf() < probability
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and not event.is_echo():
 		var new_char_data = char_data.duplicate()
-		new_char_data.is_monster = false if randi_range(0, 3) == 0 else true
-		new_char_data.is_masked = false if randi_range(0, 1) == 0 else true
-		new_char_data.is_full_outfit = true if randi_range(0, 5) == 0 else false
-		new_char_data.is_hat = false if randi_range(0, 3) == 0 else true
+		new_char_data.is_monster = rand_chance(0.75)
+		new_char_data.is_masked = rand_chance(0.5)
+		new_char_data.is_full_outfit = rand_chance(0.16)
+		new_char_data.is_hat = rand_chance(0.75)
+
 		new_char_data.monster_type = randi_range(0, 3)
 		new_char_data.height = randi_range(0, 2)
 		create_costume(new_char_data)
@@ -39,13 +43,7 @@ func _ready() -> void:
 		create_costume(char_data)
 
 func create_costume(char_resource: CharacterResource):
-	for child in body_parent.get_children():
-		if child.get_child_count() > 0:
-			for c in child.get_children():
-				if c is Sprite2D:
-					c.show()
-		if child is Sprite2D:
-			child.show()
+	show_all_sprites(body_parent)
 	
 	full_outfit_sprite.hide()
 	mask_sprite.hide()
@@ -98,7 +96,7 @@ func create_costume(char_resource: CharacterResource):
 	if char_resource.is_monster:
 		match char_resource.monster_type:
 			CharacterResource.MONSTER_TYPE.GENERIC:
-				if randi_range(0, 1) == 0:
+				if rand_chance(0.5):
 					var new_eye_frame = randi_range(6, 7)
 					left_eye_sprite.frame = new_eye_frame
 					right_eye_sprite.frame = new_eye_frame
@@ -107,7 +105,7 @@ func create_costume(char_resource: CharacterResource):
 					left_ear_sprite.frame = new_ear_frame
 					right_ear_sprite.frame = new_ear_frame
 				
-				if randi_range(0, 1) == 0:
+				if rand_chance(0.5):
 					nose_sprite.frame = randi_range(6, 7)
 				else:
 					mouth_sprite.frame = randi_range(6, 7)
@@ -151,3 +149,9 @@ func create_costume(char_resource: CharacterResource):
 			body_parent.position.y = -125
 		CharacterResource.HEIGHT_TYPE.TALL:
 			body_parent.position.y = -260
+
+func show_all_sprites(parent: Node):
+	for child in parent.get_children():
+		if child is Sprite2D:
+			child.show()
+		show_all_sprites(child)
