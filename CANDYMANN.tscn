@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0n64bx135lyg"]
+
+[ext_resource type="Script" uid="uid://bdkgrxwingvfa" path="res://candymann.gd" id="1_6y0mm"]
+[ext_resource type="Texture2D" uid="uid://g20pgsq3sgc8" path="res://icon.svg" id="1_s71s0"]
+
+[node name="Candymann" type="Node2D" node_paths=PackedStringArray("label", "giveup_button", "give_button")]
+script = ExtResource("1_6y0mm")
+needed_candy_for_candyman = 15
+label = NodePath("Label")
+giveup_button = NodePath("Give Up")
+give_button = NodePath("Give")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(0.5086056, 0.61502415)
+texture = ExtResource("1_s71s0")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = 71.0
+offset_top = 80.99999
+offset_right = 199.0
+offset_bottom = 209.0
+rotation = -0.5467762
+scale = Vector2(0.35334212, 0.8439031)
+texture = ExtResource("1_s71s0")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+offset_left = -37.0
+offset_top = 59.999992
+offset_right = 91.0
+offset_bottom = 188.0
+rotation = 0.6602404
+scale = Vector2(0.35334212, 0.8439031)
+texture = ExtResource("1_s71s0")
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+offset_left = -22.0
+offset_top = 159.00002
+offset_right = 106.0
+offset_bottom = 287.0
+rotation = 0.18087068
+scale = Vector2(0.32419175, 0.66922265)
+texture = ExtResource("1_s71s0")
+
+[node name="TextureRect6" type="TextureRect" parent="."]
+offset_left = 51.999996
+offset_top = 168.99998
+offset_right = 180.0
+offset_bottom = 297.0
+rotation = -0.2909744
+scale = Vector2(0.26256084, 0.62822735)
+texture = ExtResource("1_s71s0")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = -18.0
+offset_top = 71.00001
+offset_right = 110.0
+offset_bottom = 199.0
+scale = Vector2(0.7986202, 0.76176864)
+texture = ExtResource("1_s71s0")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -85.0
+offset_top = -33.0
+offset_right = 165.0
+offset_bottom = -10.0
+text = "Candymann asks you 20 candies"
+
+[node name="Give" type="Button" parent="."]
+offset_left = -8.0
+offset_top = 262.0
+offset_right = 34.0
+offset_bottom = 293.0
+text = "Give"
+
+[node name="Give Up" type="Button" parent="."]
+offset_left = 44.0
+offset_top = 262.0
+offset_right = 112.0
+offset_bottom = 293.0
+text = "Give Up"
