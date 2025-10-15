@@ -1,15 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://douauu5rvtuub"]
+[gd_scene load_steps=7 format=3 uid="uid://douauu5rvtuub"]
 
 [ext_resource type="Script" uid="uid://ch7h4pff23ofn" path="res://Character/costume_handler.gd" id="1_pqcqk"]
+[ext_resource type="Script" uid="uid://bbxn7k3xhtfhe" path="res://Character/character_resource_base.gd" id="2_6bo3x"]
 [ext_resource type="Texture2D" uid="uid://d04hkn4nrqjo1" path="res://Assets/spritesheet1.png" id="2_d575n"]
 [ext_resource type="Texture2D" uid="uid://c5suev8bhnnl" path="res://Assets/spritesheet2.png" id="3_6bo3x"]
 [ext_resource type="Texture2D" uid="uid://cm5qp316q0hdb" path="res://Assets/spritesheet3.png" id="4_2053j"]
 
-[node name="costume_handler" type="Node2D"]
-script = ExtResource("1_pqcqk")
+[sub_resource type="Resource" id="Resource_2053j"]
+script = ExtResource("2_6bo3x")
+metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
 
-[node name="Body" type="Sprite2D" parent="."]
-visible = false
+[node name="costume_handler" type="Node2D" node_paths=PackedStringArray("body_parent", "body_sprite", "left_hand_sprite", "right_hand_sprite", "face_sprite", "left_eye_sprite", "right_eye_sprite", "left_ear_sprite", "right_ear_sprite", "mouth_sprite", "nose_sprite", "hair_sprite", "back_hair_sprite", "mask_sprite", "hat_sprite", "left_leg_sprite", "right_leg_sprite", "full_outfit_sprite")]
+script = ExtResource("1_pqcqk")
+char_data = SubResource("Resource_2053j")
+body_parent = NodePath("Body_Parent")
+body_sprite = NodePath("Body_Parent/Body")
+left_hand_sprite = NodePath("Body_Parent/Body/LeftHand")
+right_hand_sprite = NodePath("Body_Parent/Body/RightHand")
+face_sprite = NodePath("Body_Parent/Face")
+left_eye_sprite = NodePath("Body_Parent/Face/LeftEye")
+right_eye_sprite = NodePath("Body_Parent/Face/RightEye")
+left_ear_sprite = NodePath("Body_Parent/Face/LeftEar")
+right_ear_sprite = NodePath("Body_Parent/Face/RightEar")
+mouth_sprite = NodePath("Body_Parent/Face/Mouth")
+nose_sprite = NodePath("Body_Parent/Face/Nose")
+hair_sprite = NodePath("Body_Parent/Face/Hair")
+back_hair_sprite = NodePath("Body_Parent/Face/BackHair")
+mask_sprite = NodePath("Body_Parent/Face/Mask")
+hat_sprite = NodePath("Body_Parent/Face/Hat")
+left_leg_sprite = NodePath("Body_Parent/LeftLeg")
+right_leg_sprite = NodePath("Body_Parent/RightLeg")
+full_outfit_sprite = NodePath("Body_Parent/FullOutfit")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.345, 0.345)
+
+[node name="Body_Parent" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="Body_Parent"]
 position = Vector2(0, 247)
 texture = ExtResource("3_6bo3x")
 offset = Vector2(0, 125)
@@ -17,7 +45,7 @@ hframes = 10
 region_enabled = true
 region_rect = Rect2(0, 0, 5000, 500)
 
-[node name="LeftHand" type="Sprite2D" parent="Body"]
+[node name="LeftHand" type="Sprite2D" parent="Body_Parent/Body"]
 position = Vector2(-130, 77.5)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_d575n")
@@ -26,7 +54,7 @@ hframes = 6
 region_enabled = true
 region_rect = Rect2(0, 2000, 3000, 500)
 
-[node name="RightHand" type="Sprite2D" parent="Body"]
+[node name="RightHand" type="Sprite2D" parent="Body_Parent/Body"]
 position = Vector2(130, 77.5)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_d575n")
@@ -36,22 +64,20 @@ hframes = 6
 region_enabled = true
 region_rect = Rect2(0, 2000, 3000, 500)
 
-[node name="Face" type="Sprite2D" parent="."]
-visible = false
+[node name="Face" type="Sprite2D" parent="Body_Parent"]
 texture = ExtResource("2_d575n")
 hframes = 8
-frame = 5
 region_enabled = true
 region_rect = Rect2(0, 1500, 4000, 500)
 
-[node name="LeftEye" type="Sprite2D" parent="Face"]
+[node name="LeftEye" type="Sprite2D" parent="Body_Parent/Face"]
 position = Vector2(-95, -13)
 texture = ExtResource("2_d575n")
 hframes = 8
 region_enabled = true
 region_rect = Rect2(0, 0, 2000, 250)
 
-[node name="RightEye" type="Sprite2D" parent="Face"]
+[node name="RightEye" type="Sprite2D" parent="Body_Parent/Face"]
 position = Vector2(95, -13)
 texture = ExtResource("2_d575n")
 flip_h = true
@@ -59,7 +85,7 @@ hframes = 8
 region_enabled = true
 region_rect = Rect2(0, 0, 2000, 250)
 
-[node name="LeftEar" type="Sprite2D" parent="Face"]
+[node name="LeftEar" type="Sprite2D" parent="Body_Parent/Face"]
 z_index = -1
 position = Vector2(-220, 20)
 scale = Vector2(0.9, 0.9)
@@ -68,7 +94,7 @@ hframes = 10
 region_enabled = true
 region_rect = Rect2(0, 750, 2500, 250)
 
-[node name="RightEar" type="Sprite2D" parent="Face"]
+[node name="RightEar" type="Sprite2D" parent="Body_Parent/Face"]
 z_index = -1
 position = Vector2(220, 20)
 scale = Vector2(0.9, 0.9)
@@ -78,14 +104,14 @@ hframes = 10
 region_enabled = true
 region_rect = Rect2(0, 750, 2500, 250)
 
-[node name="Mouth" type="Sprite2D" parent="Face"]
+[node name="Mouth" type="Sprite2D" parent="Body_Parent/Face"]
 position = Vector2(0, 122)
 texture = ExtResource("2_d575n")
 hframes = 10
 region_enabled = true
 region_rect = Rect2(0, 500, 2500, 250)
 
-[node name="Nose" type="Sprite2D" parent="Face"]
+[node name="Nose" type="Sprite2D" parent="Body_Parent/Face"]
 position = Vector2(0, 59)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_d575n")
@@ -93,14 +119,14 @@ hframes = 10
 region_enabled = true
 region_rect = Rect2(0, 250, 2500, 250)
 
-[node name="Hair" type="Sprite2D" parent="Face"]
-position = Vector2(0, -203)
+[node name="Hair" type="Sprite2D" parent="Body_Parent/Face"]
+position = Vector2(0, -149)
 texture = ExtResource("2_d575n")
 hframes = 8
 region_enabled = true
 region_rect = Rect2(0, 1000, 4000, 250)
 
-[node name="BackHair" type="Sprite2D" parent="Face"]
+[node name="BackHair" type="Sprite2D" parent="Body_Parent/Face"]
 z_index = -2
 position = Vector2(0, 112)
 scale = Vector2(1.3, 1.2)
@@ -109,7 +135,7 @@ hframes = 6
 region_enabled = true
 region_rect = Rect2(0, 1250, 3000, 250)
 
-[node name="Mask" type="Sprite2D" parent="Face"]
+[node name="Mask" type="Sprite2D" parent="Body_Parent/Face"]
 visible = false
 position = Vector2(0, 94)
 scale = Vector2(1.2, 1.2)
@@ -118,28 +144,28 @@ hframes = 6
 region_enabled = true
 region_rect = Rect2(0, 1750, 4500, 750)
 
-[node name="Hat" type="Sprite2D" parent="Face"]
+[node name="Hat" type="Sprite2D" parent="Body_Parent/Face"]
 visible = false
-position = Vector2(0, -265)
+position = Vector2(0, -274)
 texture = ExtResource("3_6bo3x")
 hframes = 6
 region_enabled = true
 region_rect = Rect2(0, 500, 3000, 500)
 
-[node name="LeftLeg" type="Sprite2D" parent="."]
+[node name="LeftLeg" type="Sprite2D" parent="Body_Parent"]
 z_index = -1
 position = Vector2(-80, 547.4084)
-rotation = 0.08726645
+rotation = 0.087266445
 texture = ExtResource("3_6bo3x")
 offset = Vector2(0, 275)
 hframes = 9
 region_enabled = true
 region_rect = Rect2(0, 1000, 4500, 750)
 
-[node name="RightLeg" type="Sprite2D" parent="."]
+[node name="RightLeg" type="Sprite2D" parent="Body_Parent"]
 z_index = -1
 position = Vector2(80, 547.4084)
-rotation = -0.08726645
+rotation = -0.087266445
 texture = ExtResource("3_6bo3x")
 offset = Vector2(0, 275)
 flip_h = true
@@ -147,7 +173,8 @@ hframes = 9
 region_enabled = true
 region_rect = Rect2(0, 1000, 4500, 750)
 
-[node name="FullOutfit" type="Sprite2D" parent="."]
+[node name="FullOutfit" type="Sprite2D" parent="Body_Parent"]
+visible = false
 position = Vector2(0, 133)
 texture = ExtResource("4_2053j")
 hframes = 3
