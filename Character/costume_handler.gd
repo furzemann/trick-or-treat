@@ -135,11 +135,13 @@ func create_costume(char_resource: CharacterResource):
 				right_leg_sprite.hide()
 				face_sprite.hide()
 				body_sprite.hide()
+				hat_sprite.hide()
 
 	if char_resource.is_full_outfit:
 		full_outfit_sprite.show()
 		face_sprite.hide()
 		body_sprite.hide()
+		hat_sprite.hide()
 		full_outfit_sprite.frame = randi_range(0, 2)
 	
 	match char_resource.height:
@@ -148,4 +150,4 @@ func create_costume(char_resource: CharacterResource):
 		CharacterResource.HEIGHT_TYPE.MEDIUM:
 			body_parent.position.y = -125
 		CharacterResource.HEIGHT_TYPE.TALL:
-			body_parent.position.y = -250
+			body_parent.position.y = -260
