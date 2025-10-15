@@ -1,3 +1,28 @@
-[gd_scene format=3 uid="uid://cjievcwbn5vq"]
+[gd_scene load_steps=3 format=3 uid="uid://3digxd5f1q76"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" uid="uid://cgjjspbqo7fbd" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dt5hu5ijtc5lc" path="res://character.tscn" id="2_0xm2m"]
+
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("candy_label", "character_container")]
+script = ExtResource("1_ig7tw")
+candy_label = NodePath("candy_label")
+character_container = NodePath("character_container_hbox")
+character_scene = ExtResource("2_0xm2m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+
+[node name="candy_label" type="Label" parent="."]
+offset_left = 1026.0
+offset_top = 48.0
+offset_right = 1130.0
+offset_bottom = 71.0
+text = "Candies left : "
+
+[node name="character_container_hbox" type="HBoxContainer" parent="."]
+offset_left = 106.0
+offset_top = 166.0
+offset_right = 1000.0
+offset_bottom = 542.0
