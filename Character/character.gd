@@ -1,6 +1,9 @@
 extends Node2D
 class_name Character
 
+signal character_encounter_finished
+var is_finished := false
+
 @export var char_data : CharacterResource
 
 @export_category("Dependencies")
@@ -43,6 +46,7 @@ func rand_chance(probability: float) -> bool:
 		#create_costume(char_data)
 
 func create_costume(char_resource: CharacterResource):
+	char_data = char_resource
 	show_all_sprites(body_parent)
 	
 	full_outfit_sprite.hide()
@@ -139,6 +143,13 @@ func create_costume(char_resource: CharacterResource):
 			
 			CharacterResource.MONSTER_TYPE.HORNED:
 				hair_sprite.frame = randi_range(6, 7)
+			
+			CharacterResource.MONSTER_TYPE.BIGHEAD:
+				mask_sprite.show()
+				left_ear_sprite.hide()
+				right_ear_sprite.hide()
+				char_resource.is_hat = false
+				mask_sprite.frame = randi_range(0, 5)
 
 	if char_resource.is_full_outfit:
 		full_outfit_sprite.show()
@@ -160,3 +171,8 @@ func show_all_sprites(parent: Node):
 		if child is Sprite2D:
 			child.show()
 		show_all_sprites(child)
+
+func finish_character_encounter(correct := true) -> void:
+	#TODO: animation trigger
+	is_finished = true
+	character_encounter_finished.emit()

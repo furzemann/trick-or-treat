@@ -15,7 +15,8 @@ character_manager = NodePath("CharacterManager")
 [node name="CharacterManager" type="Node" parent="EncounterManager"]
 script = ExtResource("2_s1tig")
 character_scene = ExtResource("3_s1tig")
-character_spawn_centre = Vector2(-383, 150)
+character_spawn_centre = Vector2(-383, 140)
+spacing = 200.0
 
 [node name="CandyManager" type="Node" parent="EncounterManager"]
 
@@ -31,3 +32,5 @@ texture = ExtResource("2_6p2ui")
 texture = ExtResource("4_nsa0f")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="encounter_finished" from="EncounterManager/CharacterManager" to="EncounterManager" method="encounter_finished"]
