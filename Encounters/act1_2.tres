@@ -7,11 +7,13 @@
 script = ExtResource("2_r2ml5")
 is_monster = true
 height = 3
-dialogue = Array[String](["Ooooohh noo~", " You sleueh'd me out.", "Now I have to give you my candy."])
+dialogue = "may I have some cansy? or do I give candy?"
+treat_dialogue = "You shouldn't giving candy to a monster"
+trick_dialogue = "You sleuth'd me. Have me candy."
 metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
 
 [resource]
 script = ExtResource("1_1sjgt")
 visitors = Array[ExtResource("2_r2ml5")]([SubResource("Resource_1sjgt")])
-give_candy = 0
+give_candy = -10
 metadata/_custom_type_script = "uid://cct0i013gy2pi"

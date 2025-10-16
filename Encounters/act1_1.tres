@@ -5,11 +5,13 @@
 
 [sub_resource type="Resource" id="Resource_aovek"]
 script = ExtResource("2_wqs4d")
-dialogue = Array[String](["hey fella! Fix me up with some .andy,  and I will give you something very cool."])
+dialogue = "Gimme candy, I give you list."
+treat_dialogue = "Thank you, here is the list."
+trick_dialogue = "Huh?! Anyway, here is the list is for you."
 metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
 
 [resource]
 script = ExtResource("1_qxqpf")
 visitors = Array[ExtResource("2_wqs4d")]([SubResource("Resource_aovek")])
-take_candy = 0
+take_candy = -5
 metadata/_custom_type_script = "uid://cct0i013gy2pi"

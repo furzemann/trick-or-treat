@@ -6,12 +6,14 @@
 [sub_resource type="Resource" id="Resource_so627"]
 script = ExtResource("2_21jhn")
 height = 2
-dialogue = Array[String](["My friend behind me wants candy.", "Please, Give him some."])
+dialogue = "My monster friend wants some treat."
+treat_dialogue = "I dont need candies, my friend does."
+trick_dialogue = "Give these candies to my friend."
 metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
 
 [resource]
 script = ExtResource("1_dav1q")
 visitors = Array[ExtResource("2_21jhn")]([SubResource("Resource_so627")])
 take_candy = 5
-give_candy = 0
+give_candy = -5
 metadata/_custom_type_script = "uid://cct0i013gy2pi"

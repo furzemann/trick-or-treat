@@ -7,7 +7,9 @@
 script = ExtResource("2_lnk84")
 is_monster = true
 height = 3
-dialogue = Array[String](["You must have met my friend.", "I will get some candy, no matter what"])
+dialogue = "Sir , I am poor and I want Candy."
+treat_dialogue = "Thank you mister, for giving a candy to a Monster."
+trick_dialogue = "I will take your eitherway...hee uhh !"
 metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
 
 [resource]
