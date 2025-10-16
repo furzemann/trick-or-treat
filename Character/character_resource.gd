@@ -13,3 +13,4 @@ enum HEIGHT_TYPE {SHORT, MEDIUM, TALL, RANDOM}
 @export var dialogue : String
 @export var treat_dialogue : String
 @export var trick_dialogue : String
+@export var penalty_increase := true

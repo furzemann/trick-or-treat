@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://oti6rf016faq"]
+
+[ext_resource type="FontFile" uid="uid://cj5noaxwtf4f3" path="res://Assets/GloriaHallelujah-Regular.ttf" id="1_7sjjb"]
+
+[resource]
+line_spacing = -14.0
+font = ExtResource("1_7sjjb")
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)

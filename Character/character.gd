@@ -26,6 +26,8 @@ var is_finished := false
 @export var right_leg_sprite : Sprite2D
 @export var full_outfit_sprite : Sprite2D
 
+@onready var anim_player: AnimationPlayer = $anim_player
+
 func rand_chance(probability: float) -> bool:
 	return randf() < probability
 
@@ -41,7 +43,8 @@ func rand_chance(probability: float) -> bool:
 		#new_char_data.height = randi_range(0, 2)
 		#create_costume(new_char_data)
 #
-#func _ready() -> void:
+func _ready() -> void:
+	anim_player.queue("idle")
 	#if char_data:
 		#create_costume(char_data)
 
@@ -173,6 +176,7 @@ func show_all_sprites(parent: Node):
 		show_all_sprites(child)
 
 func finish_character_encounter(correct := true) -> void:
-	#TODO: animation trigger
+	#TODO: await dialogue etc
+	anim_player.play("leave")
 	is_finished = true
 	character_encounter_finished.emit()

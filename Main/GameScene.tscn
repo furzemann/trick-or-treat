@@ -1,10 +1,329 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcmy55rouaxrl"]
+[gd_scene load_steps=43 format=3 uid="uid://bcmy55rouaxrl"]
 
 [ext_resource type="Script" uid="uid://c7q3k0fj5egj3" path="res://Main/encounter_manager.gd" id="1_nsa0f"]
 [ext_resource type="Texture2D" uid="uid://cq1ovs0j5r1si" path="res://Assets/render_bg.png" id="2_6p2ui"]
 [ext_resource type="Script" uid="uid://3n1fwry831oh" path="res://Main/character_manager.gd" id="2_s1tig"]
 [ext_resource type="PackedScene" uid="uid://douauu5rvtuub" path="res://Character/character.tscn" id="3_s1tig"]
+[ext_resource type="Texture2D" uid="uid://brplwm6bbiarp" path="res://Assets/card_sprite.png" id="4_3b31o"]
+[ext_resource type="Texture2D" uid="uid://cm5qp316q0hdb" path="res://Assets/spritesheet3.png" id="4_3oboq"]
+[ext_resource type="Script" uid="uid://bkntctrww8gqa" path="res://Main/trick_ui_manager.gd" id="4_8caqk"]
 [ext_resource type="Texture2D" uid="uid://b7a2hd3lletyh" path="res://Assets/render_fg.png" id="4_nsa0f"]
+[ext_resource type="Script" uid="uid://bn6ilsjvmxhuu" path="res://Main/trick_ui_button.gd" id="5_cd6sb"]
+[ext_resource type="FontFile" uid="uid://c6cgedb5ppjas" path="res://Assets/Quasimodo Regular.ttf" id="6_ofxgi"]
+[ext_resource type="Script" uid="uid://jcci6s0dnqiy" path="res://Main/hover_zoom.gd" id="7_ofxgi"]
+[ext_resource type="Texture2D" uid="uid://cjr2xqoyyu2rn" path="res://Assets/card_cost_sprite.png" id="9_syb4y"]
+[ext_resource type="Texture2D" uid="uid://cx2gbmolpxqjf" path="res://Assets/note_button_sprite.png" id="10_h2jdc"]
+[ext_resource type="Script" uid="uid://bulmujd4ruaix" path="res://Main/note_ui_manager.gd" id="11_5rk2m"]
+[ext_resource type="Texture2D" uid="uid://dq7ikjius6wsh" path="res://Assets/candy_particles.png" id="11_8caqk"]
+[ext_resource type="LabelSettings" uid="uid://oti6rf016faq" path="res://Assets/note_label_settings.tres" id="13_awsq4"]
+[ext_resource type="Texture2D" uid="uid://4rwgydpn4jcg" path="res://Assets/cross_sprite.png" id="13_gd6bj"]
+[ext_resource type="Texture2D" uid="uid://df0xurfnjn5ep" path="res://Assets/flip_sprite.png" id="14_5rk2m"]
+[ext_resource type="Script" uid="uid://upwl305wnpfs" path="res://Main/toffee_man_manager.gd" id="17_awsq4"]
+[ext_resource type="Texture2D" uid="uid://cbiifpma56rhe" path="res://Assets/candyman_hands.png" id="17_ga4qw"]
+[ext_resource type="Texture2D" uid="uid://en1435t71yqo" path="res://Assets/candyman_legs.png" id="18_eixk3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2jdc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8caqk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pei01"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfbf0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gd6bj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5rk2m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cd6sb"]
+font = ExtResource("6_ofxgi")
+font_size = 31
+
+[sub_resource type="LabelSettings" id="LabelSettings_ae3o4"]
+font = ExtResource("6_ofxgi")
+font_size = 51
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ga4qw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eixk3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_awsq4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1w1yd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6trmk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6646h"]
+
+[sub_resource type="Animation" id="Animation_pei01"]
+resource_name = "page_flip"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect/Label2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_nfbf0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect/Label2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nfbf0"]
+_data = {
+&"RESET": SubResource("Animation_nfbf0"),
+&"page_flip": SubResource("Animation_pei01")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_pei01"]
+font = ExtResource("6_ofxgi")
+font_size = 50
+
+[sub_resource type="Animation" id="Animation_eixk3"]
+resource_name = "toffeeMan appears"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ToffeeHands:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.9333334, 3.0000002),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ToffeeFeet:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1, 1.2, 1.4000001, 1.8, 2, 2.2, 2.6, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ToffeeHands:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.0000002, 3.2, 3.4, 3.6, 3.8, 4, 4.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ToffeeHead:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.266667, 4.4666667, 4.7),
+"transitions": PackedFloat32Array(2, 1, 1),
+"update": 1,
+"values": [Vector2(-232, -433.83), Vector2(-232, -395), Vector2(-231.99998, -368.99997)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ToffeeHead:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4.266667, 4.7000003, 5.0000005, 5.2333336, 5.366667, 5.5000005, 5.6333337),
+"transitions": PackedFloat32Array(2, 1, 0.5, 2, 0.5, 2, 1),
+"update": 1,
+"values": [0.0, -0.9199237, -2.6345758, -2.16071761396898, -2.419026343264141, -2.3457224, -2.419026343264141]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ToffeeFeet:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.06666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_awsq4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ToffeeHands:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ToffeeFeet:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ToffeeHands:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ToffeeHead:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-303, -452.00003)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ToffeeHead:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ToffeeFeet:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1w1yd"]
+_data = {
+&"RESET": SubResource("Animation_awsq4"),
+&"toffeeMan appears": SubResource("Animation_eixk3")
+}
 
 [node name="GameScene" type="Node2D"]
 
@@ -15,17 +334,449 @@ character_manager = NodePath("CharacterManager")
 [node name="CharacterManager" type="Node" parent="EncounterManager"]
 script = ExtResource("2_s1tig")
 character_scene = ExtResource("3_s1tig")
-character_spawn_centre = Vector2(-383, 140)
+character_spawn_centre = Vector2(-383, 100)
 spacing = 200.0
 
 [node name="CandyManager" type="Node" parent="EncounterManager"]
 
-[node name="UIManager" type="Node" parent="EncounterManager"]
+[node name="TrickUiManager" type="Node2D" parent="." node_paths=PackedStringArray("flash_button", "smell_button", "dance_button", "sing_button")]
+z_index = 90
+position = Vector2(3, 6)
+script = ExtResource("4_8caqk")
+flash_button = NodePath("flash_light_button")
+smell_button = NodePath("smell_button")
+dance_button = NodePath("dance_button")
+sing_button = NodePath("sing_button")
+
+[node name="flash_light_button" type="Button" parent="TrickUiManager" node_paths=PackedStringArray("cost_label")]
+clip_contents = true
+offset_left = 165.0
+offset_top = -299.0
+offset_right = 352.0
+offset_bottom = -8.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h2jdc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8caqk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_pei01")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nfbf0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gd6bj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5rk2m")
+icon = ExtResource("4_3b31o")
+flat = true
+script = ExtResource("5_cd6sb")
+cost_label = NodePath("../flash_cost/Label")
+
+[node name="Sprite2D" type="Sprite2D" parent="TrickUiManager/flash_light_button"]
+position = Vector2(82, 102)
+scale = Vector2(0.3476097, 0.3476097)
+texture = ExtResource("4_3oboq")
+hframes = 2
+vframes = 2
+region_enabled = true
+region_rect = Rect2(4000, 1500, 1000, 1000)
+
+[node name="Label" type="Label" parent="TrickUiManager/flash_light_button"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 189.0
+offset_right = 146.0
+offset_bottom = 250.0
+text = "Flash
+Light"
+label_settings = SubResource("LabelSettings_cd6sb")
+
+[node name="hover_zoom" type="Node" parent="TrickUiManager/flash_light_button"]
+script = ExtResource("7_ofxgi")
+metadata/_custom_type_script = "uid://jcci6s0dnqiy"
+
+[node name="smell_button" type="Button" parent="TrickUiManager" node_paths=PackedStringArray("cost_label")]
+clip_contents = true
+offset_left = 369.0
+offset_top = -299.0
+offset_right = 556.0
+offset_bottom = -8.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h2jdc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8caqk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_pei01")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nfbf0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gd6bj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5rk2m")
+icon = ExtResource("4_3b31o")
+flat = true
+script = ExtResource("5_cd6sb")
+cost_label = NodePath("../smell_cost/Label")
+
+[node name="Sprite2D" type="Sprite2D" parent="TrickUiManager/smell_button"]
+position = Vector2(100, 106)
+scale = Vector2(0.3476097, 0.3476097)
+texture = ExtResource("4_3oboq")
+hframes = 2
+vframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(4000, 1500, 1000, 1000)
+
+[node name="Label" type="Label" parent="TrickUiManager/smell_button"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 189.0
+offset_right = 146.0
+offset_bottom = 250.0
+text = "Sniff
+Sniff"
+label_settings = SubResource("LabelSettings_cd6sb")
+
+[node name="hover_zoom" type="Node" parent="TrickUiManager/smell_button"]
+script = ExtResource("7_ofxgi")
+metadata/_custom_type_script = "uid://jcci6s0dnqiy"
+
+[node name="dance_button" type="Button" parent="TrickUiManager" node_paths=PackedStringArray("cost_label")]
+clip_contents = true
+offset_left = 168.0
+offset_top = 11.0
+offset_right = 355.0
+offset_bottom = 302.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h2jdc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8caqk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_pei01")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nfbf0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gd6bj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5rk2m")
+icon = ExtResource("4_3b31o")
+flat = true
+script = ExtResource("5_cd6sb")
+cost_label = NodePath("../dance_cost/Label")
+
+[node name="Sprite2D" type="Sprite2D" parent="TrickUiManager/dance_button"]
+position = Vector2(90, 104)
+scale = Vector2(0.3476097, 0.3476097)
+texture = ExtResource("4_3oboq")
+hframes = 2
+vframes = 2
+frame = 2
+region_enabled = true
+region_rect = Rect2(4000, 1500, 1000, 1000)
+
+[node name="Label" type="Label" parent="TrickUiManager/dance_button"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 185.0
+offset_right = 160.0
+offset_bottom = 253.0
+text = "Dance
+Dance"
+label_settings = SubResource("LabelSettings_cd6sb")
+
+[node name="hover_zoom" type="Node" parent="TrickUiManager/dance_button"]
+script = ExtResource("7_ofxgi")
+metadata/_custom_type_script = "uid://jcci6s0dnqiy"
+
+[node name="sing_button" type="Button" parent="TrickUiManager" node_paths=PackedStringArray("cost_label")]
+clip_contents = true
+offset_left = 373.0
+offset_top = 12.0
+offset_right = 560.0
+offset_bottom = 303.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h2jdc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8caqk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_pei01")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nfbf0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gd6bj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5rk2m")
+icon = ExtResource("4_3b31o")
+flat = true
+script = ExtResource("5_cd6sb")
+cost_label = NodePath("../song_cost/Label")
+
+[node name="Sprite2D" type="Sprite2D" parent="TrickUiManager/sing_button"]
+position = Vector2(84, 108)
+scale = Vector2(0.3476097, 0.3476097)
+texture = ExtResource("4_3oboq")
+hframes = 2
+vframes = 2
+frame = 3
+region_enabled = true
+region_rect = Rect2(4000, 1500, 1000, 1000)
+
+[node name="Label" type="Label" parent="TrickUiManager/sing_button"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 183.0
+offset_right = 145.0
+offset_bottom = 244.0
+text = "Sing
+Song"
+label_settings = SubResource("LabelSettings_cd6sb")
+
+[node name="hover_zoom" type="Node" parent="TrickUiManager/sing_button"]
+script = ExtResource("7_ofxgi")
+metadata/_custom_type_script = "uid://jcci6s0dnqiy"
+
+[node name="flash_cost" type="Node2D" parent="TrickUiManager"]
+position = Vector2(175, -269)
+
+[node name="Sprite2D2" type="Sprite2D" parent="TrickUiManager/flash_cost"]
+texture = ExtResource("9_syb4y")
+
+[node name="Label" type="Label" parent="TrickUiManager/flash_cost"]
+offset_left = -22.0
+offset_top = -37.0
+offset_right = 18.0
+offset_bottom = 10.0
+text = "3
+"
+label_settings = SubResource("LabelSettings_ae3o4")
+
+[node name="smell_cost" type="Node2D" parent="TrickUiManager"]
+position = Vector2(540, -267)
+
+[node name="Sprite2D2" type="Sprite2D" parent="TrickUiManager/smell_cost"]
+texture = ExtResource("9_syb4y")
+flip_h = true
+
+[node name="Label" type="Label" parent="TrickUiManager/smell_cost"]
+offset_left = -8.0
+offset_top = -38.0
+offset_right = 32.0
+offset_bottom = 59.0
+text = "3
+"
+label_settings = SubResource("LabelSettings_ae3o4")
+
+[node name="dance_cost" type="Node2D" parent="TrickUiManager"]
+position = Vector2(176, 309)
+
+[node name="Sprite2D2" type="Sprite2D" parent="TrickUiManager/dance_cost"]
+texture = ExtResource("9_syb4y")
+flip_h = true
+
+[node name="Label" type="Label" parent="TrickUiManager/dance_cost"]
+offset_left = -8.0
+offset_top = -38.0
+offset_right = 32.0
+offset_bottom = 59.0
+text = "3
+"
+label_settings = SubResource("LabelSettings_ae3o4")
+
+[node name="song_cost" type="Node2D" parent="TrickUiManager"]
+position = Vector2(543, 308)
+
+[node name="Sprite2D2" type="Sprite2D" parent="TrickUiManager/song_cost"]
+texture = ExtResource("9_syb4y")
+
+[node name="Label" type="Label" parent="TrickUiManager/song_cost"]
+offset_left = -21.0
+offset_top = -38.0
+offset_right = 19.0
+offset_bottom = 59.0
+text = "3
+"
+label_settings = SubResource("LabelSettings_ae3o4")
+
+[node name="NoteUiManager" type="Node2D" parent="." node_paths=PackedStringArray("note")]
+z_index = 92
+position = Vector2(-10, 2)
+script = ExtResource("11_5rk2m")
+note = NodePath("ColorRect")
+
+[node name="note_button" type="Button" parent="NoteUiManager"]
+offset_left = 767.0
+offset_top = -562.0
+offset_right = 954.0
+offset_bottom = -271.0
+scale = Vector2(0.92, 0.92)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h2jdc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8caqk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_pei01")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nfbf0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gd6bj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5rk2m")
+icon = ExtResource("10_h2jdc")
+flat = true
+
+[node name="hover_zoom" type="Node" parent="NoteUiManager/note_button"]
+script = ExtResource("7_ofxgi")
+metadata/_custom_type_script = "uid://jcci6s0dnqiy"
+
+[node name="ColorRect" type="ColorRect" parent="NoteUiManager"]
+offset_left = 65.0
+offset_top = -357.0
+offset_right = 632.0
+offset_bottom = 377.0
+color = Color(0.19215687, 0.19215687, 0.19215687, 0.36862746)
+
+[node name="Sprite2D" type="Sprite2D" parent="NoteUiManager/ColorRect"]
+modulate = Color(0.92099476, 0.9209946, 0.9209946, 1)
+position = Vector2(303, 383.00003)
+scale = Vector2(0.93615997, 0.97616)
+texture = ExtResource("4_3oboq")
+hframes = 3
+region_enabled = true
+region_rect = Rect2(1000, 1500, 3000, 1000)
+
+[node name="Label" type="Label" parent="NoteUiManager/ColorRect"]
+layout_mode = 0
+offset_left = -57.0
+offset_top = 59.0
+offset_right = 670.0
+offset_bottom = 771.0
+rotation = -0.054729577
+text = "It's a scare it's a fright -
+it's  the last of October, 
+the Halloween Night!
+
+Trick or treat Treat or trick 
+so much candy it'll make you sick.
+
+Take not candy from a human child 
+ or else the Toffeeman gets riled.
+
+Toffeeman Toffeeman take my candy 
+just let me live long and dandy
+
+The monster kids are under oath 
+they can help fill your candy cloth.
+
+Monsters may put on a diguise 
+to decrease your pile of candy size
+
+Child or monster it's such a fright- 
+for this is Halloween Night!"
+label_settings = ExtResource("13_awsq4")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="NoteUiManager/ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = -22.000004
+offset_top = 53.999996
+offset_right = 705.0
+offset_bottom = 766.0
+rotation = 0.03973529
+text = "If someone’s head is costume made,  
+A little dance will make them sway.  
+Spin around and clap just twice,  
+Their balance breaks — you’ll see the guise.  
+
+The beasts and undead bite aplenty,  
+But cannot sing a shanty, hearty.  
+Try a tune, a sailor’s rhyme —  
+They lose the beat most every time.  
+
+Ghosts and ghouls come out at night,  
+But fade beneath a bit of light.  
+Hold your lantern, soft and low,  
+Watch their colors come and go.  
+
+Furry beasts and vampires dread  
+The scent that mortals leave and shed.  
+They sniff your trail, they know it well,  
+How strong, how sweet your footsteps tell.  
+"
+label_settings = ExtResource("13_awsq4")
+horizontal_alignment = 1
+
+[node name="close_button" type="Button" parent="NoteUiManager/ColorRect"]
+layout_mode = 0
+offset_left = -61.0
+offset_top = -97.0
+offset_right = 91.0
+offset_bottom = 62.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ga4qw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eixk3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_awsq4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1w1yd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6trmk")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6646h")
+icon = ExtResource("13_gd6bj")
+flat = true
+
+[node name="hover_zoom" type="Node" parent="NoteUiManager/ColorRect/close_button"]
+script = ExtResource("7_ofxgi")
+metadata/_custom_type_script = "uid://jcci6s0dnqiy"
+
+[node name="flip_button" type="Button" parent="NoteUiManager/ColorRect"]
+layout_mode = 0
+offset_left = 548.0
+offset_top = 585.0
+offset_right = 709.0
+offset_bottom = 756.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ga4qw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eixk3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_awsq4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1w1yd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6trmk")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6646h")
+icon = ExtResource("14_5rk2m")
+flat = true
+
+[node name="hover_zoom" type="Node" parent="NoteUiManager/ColorRect/flip_button"]
+script = ExtResource("7_ofxgi")
+metadata/_custom_type_script = "uid://jcci6s0dnqiy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NoteUiManager"]
+libraries = {
+&"": SubResource("AnimationLibrary_nfbf0")
+}
+
+[node name="CandyCounter" type="Node2D" parent="."]
+z_index = 91
+position = Vector2(-15, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CandyCounter"]
+position = Vector2(791, -263)
+rotation = 0.22266799
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("11_8caqk")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 500, 500)
+
+[node name="CandyCounter" type="Label" parent="CandyCounter"]
+offset_left = 844.0
+offset_top = -293.0
+offset_right = 963.0
+offset_bottom = -248.0
+text = "20"
+label_settings = SubResource("LabelSettings_pei01")
+
+[node name="ToffeeManManager" type="Node2D" parent="."]
+script = ExtResource("17_awsq4")
+
+[node name="ToffeeHands" type="Sprite2D" parent="ToffeeManManager"]
+visible = false
+position = Vector2(-236.00002, -110)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("17_ga4qw")
+vframes = 7
+
+[node name="ToffeeFeet" type="Sprite2D" parent="ToffeeManManager"]
+visible = false
+z_index = -6
+position = Vector2(-225, -2)
+scale = Vector2(1.5, 1.875)
+texture = ExtResource("18_eixk3")
+vframes = 12
+
+[node name="ToffeeHead" type="Sprite2D" parent="ToffeeManManager"]
+z_index = -6
+position = Vector2(-303, -452.00003)
+scale = Vector2(0.487, 0.487)
+texture = ExtResource("4_3oboq")
+offset = Vector2(0, -225)
+region_enabled = true
+region_rect = Rect2(0, 1500, 1000, 1000)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ToffeeManManager"]
+libraries = {
+&"": SubResource("AnimationLibrary_1w1yd")
+}
 
 [node name="EnvironmentVisuals" type="Node2D" parent="."]
 z_index = -5
 
 [node name="RenderBg" type="Sprite2D" parent="EnvironmentVisuals"]
+z_index = -2
 texture = ExtResource("2_6p2ui")
 
 [node name="RenderFg" type="Sprite2D" parent="EnvironmentVisuals"]
@@ -34,3 +785,6 @@ texture = ExtResource("4_nsa0f")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="encounter_finished" from="EncounterManager/CharacterManager" to="EncounterManager" method="encounter_finished"]
+[connection signal="button_down" from="NoteUiManager/note_button" to="NoteUiManager" method="show_note"]
+[connection signal="button_down" from="NoteUiManager/ColorRect/close_button" to="NoteUiManager" method="hide_note"]
+[connection signal="button_down" from="NoteUiManager/ColorRect/flip_button" to="NoteUiManager" method="flip"]
