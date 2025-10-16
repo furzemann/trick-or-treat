@@ -18,6 +18,7 @@ func play_sfx(audio_name : String, volume := 0., pitch := 1.):
 	var new_audio_player : AudioStreamPlayer = audio_player.instantiate()
 	new_audio_player.stream = sfx_dict[audio_name]
 	new_audio_player.volume_db = volume
+	
 	new_audio_player.pitch_scale = pitch
 	add_child(new_audio_player)
 	prev_audio_player = new_audio_player
