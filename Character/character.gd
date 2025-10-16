@@ -1,61 +1,162 @@
 extends Node2D
 class_name Character
 
-#@export var trick_button : Button
-#@export var treat_button : Button
-#@export var wait_time : float
-#@export var timer_label : Label
+@export var char_data : CharacterResource
+
+@export_category("Dependencies")
+@export var body_parent : Node2D
+@export var body_sprite : Sprite2D
+@export var left_hand_sprite : Sprite2D
+@export var right_hand_sprite : Sprite2D
+@export var face_sprite : Sprite2D
+@export var left_eye_sprite : Sprite2D
+@export var right_eye_sprite : Sprite2D
+@export var left_ear_sprite : Sprite2D
+@export var right_ear_sprite : Sprite2D
+@export var mouth_sprite : Sprite2D
+@export var nose_sprite : Sprite2D
+@export var hair_sprite : Sprite2D
+@export var back_hair_sprite : Sprite2D
+@export var mask_sprite : Sprite2D
+@export var hat_sprite : Sprite2D
+@export var left_leg_sprite : Sprite2D
+@export var right_leg_sprite : Sprite2D
+@export var full_outfit_sprite : Sprite2D
+
+func rand_chance(probability: float) -> bool:
+	return randf() < probability
+
+#func _unhandled_key_input(event: InputEvent) -> void:
+	#if event.is_action_pressed("ui_accept") and not event.is_echo():
+		#var new_char_data = char_data.duplicate()
+		#new_char_data.is_monster = rand_chance(0.75)
+		#new_char_data.is_masked = rand_chance(0.5)
+		#new_char_data.is_full_outfit = rand_chance(0.16)
+		#new_char_data.is_hat = rand_chance(0.75)
 #
-#var is_monster : bool
-#var timer : Timer
-#
-#signal character_guessed
+		#new_char_data.monster_type = randi_range(0, 4)
+		#new_char_data.height = randi_range(0, 2)
+		#create_costume(new_char_data)
 #
 #func _ready() -> void:
-	#timer = Timer.new()
-	#add_child(timer)
-	#timer.start(wait_time)
-	#
-	#trick_button.pressed.connect(_on_trick_button_pressed)
-	#treat_button.pressed.connect(_on_treat_button_pressed)
-	#timer.timeout.connect(_on_timer_timeout)
-	#is_monster = [true, false].pick_random()
-	#
-	##if is_monster:
-		##texture_rect.modulate = Color(1.0, 0.0, 0.0, 1.0)
-#
-#func _process(_delta: float) -> void:
-	#if timer:
-		#timer_label.show()
-		#timer_label.text = "%.1fs"% timer.time_left
-	#else:
-		#timer_label.hide()
-#
-#func _on_trick_button_pressed():
-	#if is_monster:
-		#CandyManager.apply_correct_guess()
-		#print("Correct Guess")
-	#else:
-		#CandyManager.apply_wrong_guess()
-		#print("Wrong Guess")
-	#character_guessed.emit()
-	#queue_free()
-#
-#func _on_treat_button_pressed():
-	#if is_monster:
-		#CandyManager.apply_wrong_guess()
-		#print("Wrong Guess")
-	#else:
-		#CandyManager.apply_correct_guess()
-		#print("Correct Guess")
-	#character_guessed.emit()
-	#queue_free()
-#
-#func _on_timer_timeout():
-	#CandyManager.apply_wrong_guess()
-	#character_guessed.emit()
-	#print("Timeout")
-	#queue_free()
-#
-#func get_img_size() -> float:
-	#return 30.
+	#if char_data:
+		#create_costume(char_data)
+
+func create_costume(char_resource: CharacterResource):
+	show_all_sprites(body_parent)
+	
+	full_outfit_sprite.hide()
+	mask_sprite.hide()
+	hat_sprite.hide()
+		
+	body_sprite.frame = randi_range(0, 9)
+	
+	var hand_frame = randi_range(0, 5)
+	left_hand_sprite.frame = hand_frame
+	right_hand_sprite.frame = hand_frame
+	
+	face_sprite.frame = randi_range(0, 5)
+	
+	var eye_frame = randi_range(0, 5)
+	left_eye_sprite.frame = eye_frame
+	right_eye_sprite.frame = eye_frame
+	
+	var ear_frame = randi_range(0, 5)
+	left_ear_sprite.frame = ear_frame
+	right_ear_sprite.frame = ear_frame
+	
+	mouth_sprite.frame = randi_range(0, 5)
+	nose_sprite.frame = randi_range(0, 5)
+	hair_sprite.frame = randi_range(0, 5)
+	back_hair_sprite.frame = randi_range(0, 5)
+	
+	var leg_frame : int
+	if char_resource.height == CharacterResource.HEIGHT_TYPE.RANDOM:
+		char_resource.height = randi_range(0, 2) as CharacterResource.HEIGHT_TYPE
+	match char_resource.height:
+		CharacterResource.HEIGHT_TYPE.SHORT:
+			leg_frame = randi_range(0, 2)
+		CharacterResource.HEIGHT_TYPE.MEDIUM:
+			leg_frame = randi_range(3, 5)
+		CharacterResource.HEIGHT_TYPE.TALL:
+			leg_frame = randi_range(6, 8)
+
+	left_leg_sprite.frame = leg_frame
+	right_leg_sprite.frame = leg_frame
+	
+	if char_resource.is_masked:
+		mask_sprite.show()
+		left_ear_sprite.hide()
+		right_ear_sprite.hide()
+		char_resource.is_hat = false
+		mask_sprite.frame = randi_range(0, 5)
+	
+	if char_resource.is_hat:
+		hat_sprite.show()
+		hat_sprite.frame = randi_range(0, 5)
+	
+	if char_resource.is_monster:
+		match char_resource.monster_type:
+			CharacterResource.MONSTER_TYPE.GENERIC:
+				if rand_chance(0.5):
+					var new_eye_frame = randi_range(6, 7)
+					left_eye_sprite.frame = new_eye_frame
+					right_eye_sprite.frame = new_eye_frame
+				else:
+					var new_ear_frame = randi_range(6, 7)
+					left_ear_sprite.frame = new_ear_frame
+					right_ear_sprite.frame = new_ear_frame
+				
+				if rand_chance(0.5):
+					nose_sprite.frame = randi_range(6, 7)
+				else:
+					mouth_sprite.frame = randi_range(6, 7)
+				
+			CharacterResource.MONSTER_TYPE.WEREWOLF:
+				mouth_sprite.hide()
+				hair_sprite.hide()
+				back_hair_sprite.hide()
+				face_sprite.frame = randi_range(6, 7)
+				nose_sprite.frame = randi_range(8, 9)
+				
+				var new_ear_sprite = randi_range(8, 9)
+				left_ear_sprite.frame = new_ear_sprite
+				right_ear_sprite.frame = new_ear_sprite
+				
+			CharacterResource.MONSTER_TYPE.VAMPIRE:
+				mouth_sprite.frame = randi_range(8, 9)
+				left_ear_sprite.frame = 6
+				right_ear_sprite.frame = 6
+
+			CharacterResource.MONSTER_TYPE.GHOST:
+				full_outfit_sprite.show()
+				full_outfit_sprite.frame = randi_range(0, 2)
+				left_leg_sprite.hide()
+				right_leg_sprite.hide()
+				face_sprite.hide()
+				body_sprite.hide()
+				hat_sprite.hide()
+			
+			CharacterResource.MONSTER_TYPE.HORNED:
+				hair_sprite.frame = randi_range(6, 7)
+
+	if char_resource.is_full_outfit:
+		full_outfit_sprite.show()
+		face_sprite.hide()
+		body_sprite.hide()
+		hat_sprite.hide()
+		full_outfit_sprite.frame = randi_range(0, 2)
+	
+	match char_resource.height:
+		CharacterResource.HEIGHT_TYPE.SHORT:
+			body_parent.position.y = 0
+		CharacterResource.HEIGHT_TYPE.MEDIUM:
+			body_parent.position.y = -125
+		CharacterResource.HEIGHT_TYPE.TALL:
+			body_parent.position.y = -260
+
+func show_all_sprites(parent: Node):
+	for child in parent.get_children():
+		if child is Sprite2D:
+			child.show()
+		show_all_sprites(child)

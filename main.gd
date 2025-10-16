@@ -29,4 +29,3 @@ func characters_spawn():
 func _process(_delta: float) -> void:
 	if character_container.get_child_count() == 0:
 		characters_spawn()
-	candy_label.text = "Candy left : %d" % CandyManager.candy

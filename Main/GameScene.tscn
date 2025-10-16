@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcmy55rouaxrl"]
+[gd_scene load_steps=6 format=3 uid="uid://bcmy55rouaxrl"]
 
 [ext_resource type="Script" uid="uid://c7q3k0fj5egj3" path="res://Main/encounter_manager.gd" id="1_nsa0f"]
 [ext_resource type="Texture2D" uid="uid://cq1ovs0j5r1si" path="res://Assets/render_bg.png" id="2_6p2ui"]
 [ext_resource type="Script" uid="uid://3n1fwry831oh" path="res://Main/character_manager.gd" id="2_s1tig"]
+[ext_resource type="PackedScene" uid="uid://douauu5rvtuub" path="res://Character/character.tscn" id="3_s1tig"]
 [ext_resource type="Texture2D" uid="uid://b7a2hd3lletyh" path="res://Assets/render_fg.png" id="4_nsa0f"]
 
 [node name="GameScene" type="Node2D"]
@@ -13,7 +14,8 @@ character_manager = NodePath("CharacterManager")
 
 [node name="CharacterManager" type="Node" parent="EncounterManager"]
 script = ExtResource("2_s1tig")
-character_spawn_centre = Vector2(-383, 180)
+character_scene = ExtResource("3_s1tig")
+character_spawn_centre = Vector2(-383, 150)
 
 [node name="CandyManager" type="Node" parent="EncounterManager"]
 
