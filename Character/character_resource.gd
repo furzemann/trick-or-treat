@@ -1,8 +1,8 @@
 extends Resource
 class_name CharacterResource
 
-enum MONSTER_TYPE {GENERIC, VAMPIRE, WEREWOLF, GHOST, HORNED}
-enum HEIGHT_TYPE {SHORT, MEDIUM, TALL}
+enum MONSTER_TYPE {GENERIC, VAMPIRE, WEREWOLF, GHOST, HORNED, BIGHEAD}
+enum HEIGHT_TYPE {SHORT, MEDIUM, TALL, RANDOM}
 
 @export var is_monster := false
 @export var is_masked := false
@@ -10,3 +10,4 @@ enum HEIGHT_TYPE {SHORT, MEDIUM, TALL}
 @export var is_full_outfit := false
 @export var monster_type : MONSTER_TYPE = MONSTER_TYPE.GENERIC
 @export var height : HEIGHT_TYPE = HEIGHT_TYPE.SHORT
+@export var dialogue : Array[String]

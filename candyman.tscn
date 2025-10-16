@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bdkgrxwingvfa" path="res://candymann.gd" id="1_6y0mm"]
 [ext_resource type="Texture2D" uid="uid://g20pgsq3sgc8" path="res://icon.svg" id="1_s71s0"]
 
-[node name="Candymann" type="Node2D" node_paths=PackedStringArray("label", "giveup_button", "give_button")]
+[node name="candyman" type="Node2D" node_paths=PackedStringArray("label", "giveup_button", "give_button")]
 script = ExtResource("1_6y0mm")
 needed_candy_for_candyman = 15
 label = NodePath("Label")

@@ -34,7 +34,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		new_char_data.is_full_outfit = rand_chance(0.16)
 		new_char_data.is_hat = rand_chance(0.75)
 
-		new_char_data.monster_type = randi_range(0, 3)
+		new_char_data.monster_type = randi_range(0, 4)
 		new_char_data.height = randi_range(0, 2)
 		create_costume(new_char_data)
 
@@ -71,6 +71,8 @@ func create_costume(char_resource: CharacterResource):
 	back_hair_sprite.frame = randi_range(0, 5)
 	
 	var leg_frame : int
+	if char_resource.height == CharacterResource.HEIGHT_TYPE.RANDOM:
+		char_resource.height = randi_range(0, 2) as CharacterResource.HEIGHT_TYPE
 	match char_resource.height:
 		CharacterResource.HEIGHT_TYPE.SHORT:
 			leg_frame = randi_range(0, 2)
@@ -134,6 +136,9 @@ func create_costume(char_resource: CharacterResource):
 				face_sprite.hide()
 				body_sprite.hide()
 				hat_sprite.hide()
+			
+			CharacterResource.MONSTER_TYPE.HORNED:
+				hair_sprite.frame = randi_range(6, 7)
 
 	if char_resource.is_full_outfit:
 		full_outfit_sprite.show()

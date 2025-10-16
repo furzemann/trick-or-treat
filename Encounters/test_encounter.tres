@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=5 format=3 uid="uid://df7h4wgxyibn0"]
+
+[ext_resource type="Script" uid="uid://cct0i013gy2pi" path="res://Main/EncounterData.gd" id="1_etsts"]
+[ext_resource type="Script" uid="uid://bbxn7k3xhtfhe" path="res://Character/character_resource.gd" id="2_bmv1e"]
+
+[sub_resource type="Resource" id="Resource_etsts"]
+script = ExtResource("2_bmv1e")
+is_monster = true
+monster_type = 5
+height = 3
+dialogue = Array[String](["Be Careful about those other Bigheads!", "Their masks aren't real!"])
+metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
+
+[sub_resource type="Resource" id="Resource_bmv1e"]
+script = ExtResource("2_bmv1e")
+is_masked = true
+metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
+
+[resource]
+script = ExtResource("1_etsts")
+event = 1
+visitors = Array[ExtResource("2_bmv1e")]([SubResource("Resource_etsts"), SubResource("Resource_bmv1e")])
+metadata/_custom_type_script = "uid://cct0i013gy2pi"
