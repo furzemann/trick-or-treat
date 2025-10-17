@@ -4,6 +4,9 @@ class_name Character
 signal character_encounter_finished
 var is_finished := false
 
+var take_candy : int
+var give_candy : int
+
 @export var char_data : CharacterResource
 
 @export_category("Dependencies")
@@ -31,8 +34,11 @@ var is_finished := false
 @export var sniff_particles : CPUParticles2D
 @export var anger_particles : CPUParticles2D
 
+@export var response_sprite : Sprite2D
+
 @export var dialogue_holder : DialogueHolder
 @onready var anim_player: AnimationPlayer = $anim_player
+
 
 func rand_chance(probability: float) -> bool:
 	return randf() < probability
@@ -234,8 +240,17 @@ func respond_to_trick(trick_name: String):
 		
 	reset_to_idle()
 
-func _on_detect_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if Input.is_action_just_pressed("left_click"):
-		pass
-	elif Input.is_action_just_pressed("right_click"):
-		pass
+func _on_detect_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
+	var response_anim: AnimationPlayer = $response_anim
+	if Input.is_action_just_pressed("left_click"): #treat attempt
+		if char_data.is_monster:
+			response_sprite.frame = 0
+		else:
+			response_sprite.frame = 2
+		GameState.candies = GameState.candies - give_candy
+	elif Input.is_action_just_pressed("right_click"): #steal attempt
+		if char_data.is_monster:
+			response_sprite.frame = 1
+		else:
+			response_sprite.frame = 3
+		GameState.candies = GameState.candies + take_candy

@@ -13,20 +13,13 @@ var _timer_active := false
 
 signal encounter_finished
 
-func _ready() -> void:
-	var new_data = CharacterResource.new()
-	new_data.is_monster = true
-	new_data.monster_type = 3
-	new_data.height = CharacterResource.HEIGHT_TYPE.RANDOM
-	spawn_children([new_data, new_data.duplicate(), new_data.duplicate()])
-
 func _process(delta: float) -> void:
 	if _timer_active:
 		_timer -= delta
 		if _timer <= 0.:
 			return_remaining_children()
 
-func spawn_children(child_data_array : Array[CharacterResource]):
+func spawn_children(child_data_array : Array[CharacterResource], encounter_data : EncounterData):
 	if not character_scene:
 		return
 	
@@ -40,6 +33,8 @@ func spawn_children(child_data_array : Array[CharacterResource]):
 		var new_child : Character = character_scene.instantiate()
 		add_child(new_child)
 		_current_children.push_back(new_child)
+		new_child.take_candy = encounter_data.take_candy
+		new_child.give_candy = encounter_data.give_candy
 		new_child.create_costume(child_data_array[i])
 		new_child.global_position = positions[i]
 		new_child.character_encounter_finished.connect(character_encounter_finished)

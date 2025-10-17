@@ -16,7 +16,7 @@ func start_next_encounter() -> void:
 		return
 	
 	var char_data_array : Array[CharacterResource] = parse_encounter_data(EncounterOrder[_index])
-	character_manager.spawn_children(char_data_array)
+	character_manager.spawn_children(char_data_array, EncounterOrder[_index])
 	character_manager.start_timer(EncounterOrder[_index].timer)
 	
 	_index += 1

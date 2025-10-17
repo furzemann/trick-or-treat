@@ -457,6 +457,7 @@ _data = {
 [node name="EncounterManager" type="Node" parent="." node_paths=PackedStringArray("character_manager")]
 script = ExtResource("1_nsa0f")
 character_manager = NodePath("CharacterManager")
+encounter_delay = null
 
 [node name="CharacterManager" type="Node" parent="EncounterManager"]
 script = ExtResource("2_s1tig")
