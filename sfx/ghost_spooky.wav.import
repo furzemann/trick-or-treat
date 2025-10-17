@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://0j3insl0lhx4"
-path="res://.godot/imported/npc08.wav-18877b9250cca17ce6bd2c20d36223bf.sample"
+uid="uid://cevw1qm22pggw"
+path="res://.godot/imported/ghost_spooky.wav-ef81722c51408e6664e22de0999043ba.sample"
 
 [deps]
 
-source_file="res://sfx/npc08.wav"
-dest_files=["res://.godot/imported/npc08.wav-18877b9250cca17ce6bd2c20d36223bf.sample"]
+source_file="res://sfx/ghost_spooky.wav"
+dest_files=["res://.godot/imported/ghost_spooky.wav-ef81722c51408e6664e22de0999043ba.sample"]
 
 [params]
 

@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dnd1dbi1kvi7c"
-path="res://.godot/imported/npc18.wav-e79a2af50d49093473b14d465455fc3e.sample"
+uid="uid://bokkf21yliwx7"
+path="res://.godot/imported/werewolf2.wav-e3e9453559887b5ce14d1280a135b8c7.sample"
 
 [deps]
 
-source_file="res://sfx/npc18.wav"
-dest_files=["res://.godot/imported/npc18.wav-e79a2af50d49093473b14d465455fc3e.sample"]
+source_file="res://sfx/werewolf2.wav"
+dest_files=["res://.godot/imported/werewolf2.wav-e3e9453559887b5ce14d1280a135b8c7.sample"]
 
 [params]
 

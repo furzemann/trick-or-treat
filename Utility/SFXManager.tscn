@@ -1,6 +1,61 @@
-[gd_scene load_steps=2 format=3 uid="uid://dayud51rwvpbv"]
+[gd_scene load_steps=36 format=3 uid="uid://dayud51rwvpbv"]
 
 [ext_resource type="Script" uid="uid://dyplgrkb531ke" path="res://Utility/sfx_manager.gd" id="1_onrww"]
+[ext_resource type="AudioStream" uid="uid://b85483rufbtxx" path="res://sfx/npc_voices/npc01.wav" id="2_hd4v3"]
+[ext_resource type="AudioStream" uid="uid://w7r562trqvb7" path="res://sfx/book_close.wav" id="2_khaoa"]
+[ext_resource type="AudioStream" uid="uid://choxkeyh8el3p" path="res://sfx/book_open.wav" id="3_8k0g3"]
+[ext_resource type="AudioStream" uid="uid://bkomw763pb6qw" path="res://sfx/npc_voices/npc02.wav" id="3_12xwe"]
+[ext_resource type="AudioStream" uid="uid://52kvnrwh6nsx" path="res://sfx/npc_voices/npc03.wav" id="4_8tgmb"]
+[ext_resource type="AudioStream" uid="uid://b0o4a1bhk1xhc" path="res://sfx/candyman2.wav" id="4_hp3d0"]
+[ext_resource type="AudioStream" uid="uid://cri2tgitp3wh5" path="res://sfx/candyman3.wav" id="5_82esq"]
+[ext_resource type="AudioStream" uid="uid://c8x44f7geodhb" path="res://sfx/npc_voices/npc04.wav" id="5_a8x6y"]
+[ext_resource type="AudioStream" uid="uid://b432b1vypu3l7" path="res://sfx/npc_voices/npc05.wav" id="6_2ftmn"]
+[ext_resource type="AudioStream" uid="uid://ddl6e17pv36v3" path="res://sfx/candyman.wav" id="6_o2642"]
+[ext_resource type="AudioStream" uid="uid://c10we4otcawqg" path="res://sfx/npc_voices/npc06.wav" id="7_epwvo"]
+[ext_resource type="AudioStream" uid="uid://cevw1qm22pggw" path="res://sfx/ghost_spooky.wav" id="7_rj8ho"]
+[ext_resource type="AudioStream" uid="uid://db2kv27m20o0v" path="res://sfx/knock.wav" id="8_6ih83"]
+[ext_resource type="AudioStream" uid="uid://bc80dwptemjim" path="res://sfx/npc_voices/npc07.wav" id="8_a1gkq"]
+[ext_resource type="AudioStream" uid="uid://0j3insl0lhx4" path="res://sfx/npc_voices/npc08.wav" id="9_1wnab"]
+[ext_resource type="AudioStream" uid="uid://dpw3lrbby1tug" path="res://sfx/maybe_child_leave.wav" id="9_v5y0q"]
+[ext_resource type="AudioStream" uid="uid://b6u40jmjvb1w8" path="res://sfx/page_turn.wav" id="10_1q0dh"]
+[ext_resource type="AudioStream" uid="uid://df1aeat6qiq5e" path="res://sfx/npc_voices/npc09.wav" id="10_wacq0"]
+[ext_resource type="AudioStream" uid="uid://b3y4odm51cvde" path="res://sfx/npc_voices/npc10.wav" id="11_h001m"]
+[ext_resource type="AudioStream" uid="uid://y384cycgs3h0" path="res://sfx/pop_up.wav" id="11_o2d78"]
+[ext_resource type="AudioStream" uid="uid://cg4vngudctmmi" path="res://sfx/npc_voices/npc11.wav" id="12_2fktp"]
+[ext_resource type="AudioStream" uid="uid://c3y6ytr8gp3yq" path="res://sfx/tick_tock_var1.wav" id="12_mfeim"]
+[ext_resource type="AudioStream" uid="uid://btew75rs3ew4p" path="res://sfx/tick_tock_var2.wav" id="13_rdupc"]
+[ext_resource type="AudioStream" uid="uid://csbthdjlecjmt" path="res://sfx/npc_voices/npc12.wav" id="13_rgkax"]
+[ext_resource type="AudioStream" uid="uid://ddq6skupqd3au" path="res://sfx/trick.wav" id="14_gb2ys"]
+[ext_resource type="AudioStream" uid="uid://xjevocdes61e" path="res://sfx/npc_voices/npc13.wav" id="14_v3e5t"]
+[ext_resource type="AudioStream" uid="uid://ht0q8eq2pt1r" path="res://sfx/npc_voices/npc14.wav" id="15_ay4cg"]
+[ext_resource type="AudioStream" uid="uid://c5kfgjxk2cjy8" path="res://sfx/ui_sfx.wav" id="15_pwbjs"]
+[ext_resource type="AudioStream" uid="uid://cg0pgoh0q1c27" path="res://sfx/ui_sfx2.wav" id="16_82esq"]
+[ext_resource type="AudioStream" uid="uid://bokkf21yliwx7" path="res://sfx/werewolf2.wav" id="17_7kaac"]
+[ext_resource type="AudioStream" uid="uid://1vvhm0pnp20p" path="res://sfx/werewolf.wav" id="18_3ky47"]
+[ext_resource type="AudioStream" uid="uid://duvuoydwfpaq5" path="res://sfx/sing2.wav" id="33_82esq"]
+[ext_resource type="AudioStream" uid="uid://d38cqeosatycp" path="res://sfx/sing3.wav" id="34_o2642"]
+[ext_resource type="AudioStream" uid="uid://bkyjtvy2vokxb" path="res://sfx/sing.wav" id="35_rj8ho"]
 
-[node name="SfxManager" type="Node2D"]
+[node name="SfxManager" type="Node"]
 script = ExtResource("1_onrww")
+sfx = Dictionary[String, AudioStream]({
+"book_close": ExtResource("2_khaoa"),
+"book_open": ExtResource("3_8k0g3"),
+"candyman": ExtResource("6_o2642"),
+"candyman2": ExtResource("4_hp3d0"),
+"candyman3": ExtResource("5_82esq"),
+"child_leave": ExtResource("9_v5y0q"),
+"ghost_spooky": ExtResource("7_rj8ho"),
+"knock": ExtResource("8_6ih83"),
+"page_turn": ExtResource("10_1q0dh"),
+"pop_up": ExtResource("11_o2d78"),
+"tick_tock1": ExtResource("12_mfeim"),
+"tick_tock2": ExtResource("13_rdupc"),
+"trick": ExtResource("14_gb2ys"),
+"ui_sfx1": ExtResource("15_pwbjs"),
+"ui_sfx2": ExtResource("16_82esq"),
+"werewolf1": ExtResource("18_3ky47"),
+"werewolf2": ExtResource("17_7kaac")
+})
+random_characters_sound = Array[AudioStream]([ExtResource("2_hd4v3"), ExtResource("3_12xwe"), ExtResource("4_8tgmb"), ExtResource("5_a8x6y"), ExtResource("6_2ftmn"), ExtResource("7_epwvo"), ExtResource("8_a1gkq"), ExtResource("9_1wnab"), ExtResource("10_wacq0"), ExtResource("11_h001m"), ExtResource("12_2fktp"), ExtResource("13_rgkax"), ExtResource("14_v3e5t"), ExtResource("15_ay4cg")])
+singing_sfx = Array[AudioStream]([ExtResource("33_82esq"), ExtResource("34_o2642"), ExtResource("35_rj8ho")])
