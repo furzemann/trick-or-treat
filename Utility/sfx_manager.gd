@@ -1,24 +1,58 @@
-extends Node2D
+extends Node
 
-@export var sfx_dict : Dictionary[String, AudioStream]
-@export var audio_player : PackedScene
-var prev_audio_player : AudioStreamPlayer
+@export var sfx: Dictionary[String, AudioStream]
+@export var random_characters_sound: Array[AudioStream] = []
+@export var singing_sfx: Array[AudioStream] = []
 
-func play_sfx(audio_name : String, volume := 0., pitch := 1.):
-	if not sfx_dict.has(audio_name):
-		push_warning("no audio called " + audio_name)
+var active_players: Array[AudioStreamPlayer] = []
+
+func play_sfx(sfx_name: String, volume_db: float = 0.0, randomised_pitch: bool = false, playback_start: float = 0.0) -> void:
+	if not sfx.has(sfx_name):
+		push_warning("SFXManager: Sound not found - " + sfx_name)
 		return
-	if not audio_player.can_instantiate():
+
+	var stream: AudioStream = sfx[sfx_name]
+	if stream == null:
+		push_warning("SFXManager: Null stream for name - " + sfx_name)
 		return
+
+	_play_stream(stream, volume_db, randomised_pitch, playback_start)
+
+
+func random_npc_sounds(randomised_pitch: bool = false, volume_db: float = 0.0) -> void:
+	if random_characters_sound.is_empty():
+		push_warning("SFXManager: 'random_characters_sound' array is empty!")
+		return
+
+	var stream: AudioStream = random_characters_sound.pick_random()
+	if stream == null:
+		push_warning("SFXManager: Null stream in 'random_characters_sound'!")
+		return
+
+	_play_stream(stream, volume_db, randomised_pitch)
+
+func sing(randomised_pitch:bool = false, volume_db: float = 0.0) -> void:
+	if singing_sfx.is_empty():
+		push_warning("SFXManager: 'singing_sfx' array is empty!")
+		return
+	var stream: AudioStream = singing_sfx.pick_random()
+	if stream == null:
+		push_warning("SFXManager: Null stream in 'random_characters_sound'!")
+		return
+
+	_play_stream(stream, volume_db, randomised_pitch)
 	
-	if prev_audio_player:
-		if prev_audio_player.stream == sfx_dict[audio_name]:
-			prev_audio_player.queue_free()
-	
-	var new_audio_player : AudioStreamPlayer = audio_player.instantiate()
-	new_audio_player.stream = sfx_dict[audio_name]
-	new_audio_player.volume_db = volume
-	
-	new_audio_player.pitch_scale = pitch
-	add_child(new_audio_player)
-	prev_audio_player = new_audio_player
+func _play_stream(stream: AudioStream, volume_db: float, randomised_pitch: bool, playback_start: float = 0.0) -> void:
+	var player := AudioStreamPlayer.new()
+	player.stream = stream
+	player.volume_db = volume_db
+	player.pitch_scale = randf_range(0.8, 1.2) if randomised_pitch else 1.0
+
+	add_child(player)
+	player.play(playback_start)
+
+	player.finished.connect(func():
+		active_players.erase(player)
+		player.queue_free()
+	)
+	active_players.append(player)
