@@ -8,10 +8,11 @@ script = ExtResource("2_wqs4d")
 dialogue = "Gimme candy, I give you list."
 treat_dialogue = "Thank you, here is the list."
 trick_dialogue = "Huh?! Anyway, here is the list is for you."
+penalty_increase = false
 metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
 
 [resource]
 script = ExtResource("1_qxqpf")
 visitors = Array[ExtResource("2_wqs4d")]([SubResource("Resource_aovek")])
-take_candy = -5
+take_candy = 0
 metadata/_custom_type_script = "uid://cct0i013gy2pi"

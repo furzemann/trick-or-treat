@@ -9,6 +9,7 @@ height = 2
 dialogue = "My monster friend wants some treat."
 treat_dialogue = "I dont need candies, my friend does."
 trick_dialogue = "Give these candies to my friend."
+penalty_increase = false
 metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
 
 [resource]
