@@ -58,8 +58,6 @@ func rand_chance(probability: float) -> bool:
 func _ready() -> void:
 	reset_to_idle()
 	dialogue_holder.hide()
-	#if char_data:
-		#create_costume(char_data)
 
 func reset_to_idle():
 	anim_player.queue("RESET")
@@ -71,8 +69,10 @@ func say_dialogue(dialogue: Array[String]):
 
 func create_costume(char_resource: CharacterResource):
 	char_data = char_resource
+	if char_data.dialogue:
+		say_dialogue([char_data.dialogue])
 	show_all_sprites(body_parent)
-	
+
 	full_outfit_sprite.hide()
 	mask_sprite.hide()
 	hat_sprite.hide()
@@ -204,7 +204,7 @@ func finish_character_encounter(correct := true) -> void:
 	#TODO: await dialogue etc
 	if dialogue_holder._dialogue_active:
 		await dialogue_holder.dialogue_finished
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.1).timeout
 	anim_player.play("leave")
 	is_finished = true
 	character_encounter_finished.emit()
@@ -248,9 +248,18 @@ func _on_detect_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx
 		else:
 			response_sprite.frame = 2
 		GameState.candies = GameState.candies - give_candy
+		if char_data.treat_dialogue:
+			say_dialogue([char_data.treat_dialogue])
 	elif Input.is_action_just_pressed("right_click"): #steal attempt
 		if char_data.is_monster:
 			response_sprite.frame = 1
 		else:
 			response_sprite.frame = 3
 		GameState.candies = GameState.candies + take_candy
+		if char_data.trick_dialogue:
+			say_dialogue([char_data.trick_dialogue])
+	else:
+		return
+	response_anim.play("response")
+	await response_anim.animation_finished
+	finish_character_encounter()
