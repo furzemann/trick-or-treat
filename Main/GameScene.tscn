@@ -1,23 +1,38 @@
-[gd_scene load_steps=55 format=3 uid="uid://bcmy55rouaxrl"]
+[gd_scene load_steps=70 format=3 uid="uid://bcmy55rouaxrl"]
 
 [ext_resource type="Script" uid="uid://c7q3k0fj5egj3" path="res://Main/encounter_manager.gd" id="1_nsa0f"]
 [ext_resource type="Texture2D" uid="uid://cq1ovs0j5r1si" path="res://Assets/render_bg.png" id="2_6p2ui"]
 [ext_resource type="Script" uid="uid://3n1fwry831oh" path="res://Main/character_manager.gd" id="2_s1tig"]
+[ext_resource type="Script" uid="uid://cct0i013gy2pi" path="res://Main/EncounterData.gd" id="2_t24rv"]
 [ext_resource type="PackedScene" uid="uid://douauu5rvtuub" path="res://Character/character.tscn" id="3_s1tig"]
+[ext_resource type="Resource" uid="uid://oltbbe0eouup" path="res://Encounters/act1_1.tres" id="3_wyx31"]
 [ext_resource type="Texture2D" uid="uid://brplwm6bbiarp" path="res://Assets/card_sprite.png" id="4_3b31o"]
 [ext_resource type="Texture2D" uid="uid://cm5qp316q0hdb" path="res://Assets/spritesheet3.png" id="4_3oboq"]
+[ext_resource type="Resource" uid="uid://ci2mcr52d1ukl" path="res://Encounters/act1_2.tres" id="4_4tksw"]
 [ext_resource type="Script" uid="uid://bkntctrww8gqa" path="res://Main/trick_ui_manager.gd" id="4_8caqk"]
 [ext_resource type="Texture2D" uid="uid://b7a2hd3lletyh" path="res://Assets/render_fg.png" id="4_nsa0f"]
 [ext_resource type="Script" uid="uid://bn6ilsjvmxhuu" path="res://Main/trick_ui_button.gd" id="5_cd6sb"]
+[ext_resource type="Resource" uid="uid://b40etfhwa7x3e" path="res://Encounters/randomNH.tres" id="5_ep3cl"]
 [ext_resource type="FontFile" uid="uid://c6cgedb5ppjas" path="res://Assets/Quasimodo Regular.ttf" id="6_ofxgi"]
+[ext_resource type="Resource" uid="uid://mcwc3kpmqewm" path="res://Encounters/act1_6.tres" id="6_qp4ph"]
+[ext_resource type="Resource" uid="uid://bqj6dphtue1iu" path="res://Encounters/act1_7_monster.tres" id="7_nij46"]
 [ext_resource type="Script" uid="uid://jcci6s0dnqiy" path="res://Main/hover_zoom.gd" id="7_ofxgi"]
+[ext_resource type="Resource" uid="uid://cuplo0iuh1x3y" path="res://Encounters/randomH.tres" id="8_3qh5f"]
+[ext_resource type="Resource" uid="uid://63r7qo5eqnks" path="res://Encounters/act1_candyman.tres" id="9_8qyju"]
 [ext_resource type="Texture2D" uid="uid://cjr2xqoyyu2rn" path="res://Assets/card_cost_sprite.png" id="9_syb4y"]
 [ext_resource type="Texture2D" uid="uid://cx2gbmolpxqjf" path="res://Assets/note_button_sprite.png" id="10_h2jdc"]
+[ext_resource type="Resource" uid="uid://bl4tk3pwwxdck" path="res://Encounters/act2_1_bighead.tres" id="10_h2rpr"]
 [ext_resource type="Script" uid="uid://bulmujd4ruaix" path="res://Main/note_ui_manager.gd" id="11_5rk2m"]
+[ext_resource type="Resource" uid="uid://cyt6qsg2dowcs" path="res://Encounters/act2_2.tres" id="11_6yoci"]
 [ext_resource type="Texture2D" uid="uid://dq7ikjius6wsh" path="res://Assets/candy_particles.png" id="11_8caqk"]
+[ext_resource type="Resource" uid="uid://xp38usjy3dk" path="res://Encounters/act2_3.tres" id="12_hmuuh"]
 [ext_resource type="LabelSettings" uid="uid://oti6rf016faq" path="res://Assets/note_label_settings.tres" id="13_awsq4"]
 [ext_resource type="Texture2D" uid="uid://4rwgydpn4jcg" path="res://Assets/cross_sprite.png" id="13_gd6bj"]
+[ext_resource type="Resource" uid="uid://ba3r0u2bbh5d3" path="res://Encounters/act2_candyman.tres" id="13_xdwu3"]
 [ext_resource type="Texture2D" uid="uid://df0xurfnjn5ep" path="res://Assets/flip_sprite.png" id="14_5rk2m"]
+[ext_resource type="Resource" uid="uid://e8e0tr2km7jd" path="res://Encounters/act3_1.tres" id="14_qq12m"]
+[ext_resource type="Resource" uid="uid://0fkmbpw873tc" path="res://Encounters/act3_2.tres" id="15_6d5qv"]
+[ext_resource type="Resource" uid="uid://bioxyyykfete3" path="res://Encounters/act3_candyman.tres" id="16_3hp3f"]
 [ext_resource type="Script" uid="uid://b0ly25c8b642r" path="res://Main/candy_counter.gd" id="16_ugay7"]
 [ext_resource type="Script" uid="uid://upwl305wnpfs" path="res://Main/toffee_man_manager.gd" id="17_awsq4"]
 [ext_resource type="Texture2D" uid="uid://cbiifpma56rhe" path="res://Assets/candyman_hands.png" id="17_ga4qw"]
@@ -456,6 +471,7 @@ _data = {
 
 [node name="EncounterManager" type="Node" parent="." node_paths=PackedStringArray("character_manager")]
 script = ExtResource("1_nsa0f")
+EncounterOrder = Array[ExtResource("2_t24rv")]([ExtResource("3_wyx31"), ExtResource("4_4tksw"), ExtResource("5_ep3cl"), ExtResource("5_ep3cl"), ExtResource("5_ep3cl"), ExtResource("6_qp4ph"), ExtResource("7_nij46"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("9_8qyju"), ExtResource("5_ep3cl"), ExtResource("5_ep3cl"), ExtResource("10_h2rpr"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("11_6yoci"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("12_hmuuh"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("13_xdwu3"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("5_ep3cl"), ExtResource("14_qq12m"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("5_ep3cl"), ExtResource("5_ep3cl"), ExtResource("15_6d5qv"), ExtResource("8_3qh5f"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("16_3hp3f")])
 character_manager = NodePath("CharacterManager")
 encounter_delay = null
 
