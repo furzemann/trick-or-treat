@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cq3ap5xs8p22r"]
+
+[ext_resource type="FontFile" uid="uid://i2fcdnecftyh" path="res://Assets/CaveatBrush-Regular.ttf" id="1_cqjed"]
+
+[resource]
+line_spacing = -25.0
+font = ExtResource("1_cqjed")
+font_size = 80
+font_color = Color(0.072842635, 0.072842635, 0.072842635, 1)

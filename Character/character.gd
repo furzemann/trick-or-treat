@@ -26,6 +26,12 @@ var is_finished := false
 @export var right_leg_sprite : Sprite2D
 @export var full_outfit_sprite : Sprite2D
 
+@export var sing_particles : CPUParticles2D
+@export var woof_particles : CPUParticles2D
+@export var sniff_particles : CPUParticles2D
+@export var anger_particles : CPUParticles2D
+
+@export var dialogue_holder : DialogueHolder
 @onready var anim_player: AnimationPlayer = $anim_player
 
 func rand_chance(probability: float) -> bool:
@@ -44,9 +50,18 @@ func rand_chance(probability: float) -> bool:
 		#create_costume(new_char_data)
 #
 func _ready() -> void:
-	anim_player.queue("idle")
+	reset_to_idle()
+	dialogue_holder.hide()
 	#if char_data:
 		#create_costume(char_data)
+
+func reset_to_idle():
+	anim_player.queue("RESET")
+	anim_player.queue("idle")
+
+func say_dialogue(dialogue: Array[String]):
+	dialogue_holder.show()
+	dialogue_holder.start_dialogue(dialogue)
 
 func create_costume(char_resource: CharacterResource):
 	char_data = char_resource
@@ -123,6 +138,9 @@ func create_costume(char_resource: CharacterResource):
 				mouth_sprite.hide()
 				hair_sprite.hide()
 				back_hair_sprite.hide()
+				sing_particles.hide()
+				woof_particles.show()
+				sniff_particles.show()
 				face_sprite.frame = randi_range(6, 7)
 				nose_sprite.frame = randi_range(8, 9)
 				
@@ -134,6 +152,7 @@ func create_costume(char_resource: CharacterResource):
 				mouth_sprite.frame = randi_range(8, 9)
 				left_ear_sprite.frame = 6
 				right_ear_sprite.frame = 6
+				sniff_particles.show()
 
 			CharacterResource.MONSTER_TYPE.GHOST:
 				full_outfit_sprite.show()
@@ -177,6 +196,38 @@ func show_all_sprites(parent: Node):
 
 func finish_character_encounter(correct := true) -> void:
 	#TODO: await dialogue etc
+	if dialogue_holder._dialogue_active:
+		await dialogue_holder.dialogue_finished
+		await get_tree().create_timer(0.3).timeout
 	anim_player.play("leave")
 	is_finished = true
 	character_encounter_finished.emit()
+
+func respond_to_trick(trick_name: String):
+	anim_player.play("RESET")
+	await get_tree().process_frame
+	match trick_name:
+		"flash":
+			if char_data.is_monster:
+				if char_data.monster_type == CharacterResource.MONSTER_TYPE.VAMPIRE or  char_data.monster_type == CharacterResource.MONSTER_TYPE.GHOST:
+					anim_player.play("fade")
+		"smell":
+			if char_data.is_monster:
+				if char_data.monster_type == CharacterResource.MONSTER_TYPE.VAMPIRE or  char_data.monster_type == CharacterResource.MONSTER_TYPE.WEREWOLF:
+					sing_particles.hide()
+					woof_particles.hide()
+					sniff_particles.show()
+					anim_player.play("sing")
+		"dance":
+			anim_player.play("dance")
+		"sing":
+			anim_player.play("sing")
+			if char_data.is_monster:
+				if char_data.monster_type == CharacterResource.MONSTER_TYPE.WEREWOLF:
+					sing_particles.hide()
+					woof_particles.show()
+			else:
+				sing_particles.show()
+			sniff_particles.hide()
+		
+	reset_to_idle()

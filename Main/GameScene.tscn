@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bcmy55rouaxrl"]
+[gd_scene load_steps=55 format=3 uid="uid://bcmy55rouaxrl"]
 
 [ext_resource type="Script" uid="uid://c7q3k0fj5egj3" path="res://Main/encounter_manager.gd" id="1_nsa0f"]
 [ext_resource type="Texture2D" uid="uid://cq1ovs0j5r1si" path="res://Assets/render_bg.png" id="2_6p2ui"]
@@ -18,9 +18,136 @@
 [ext_resource type="LabelSettings" uid="uid://oti6rf016faq" path="res://Assets/note_label_settings.tres" id="13_awsq4"]
 [ext_resource type="Texture2D" uid="uid://4rwgydpn4jcg" path="res://Assets/cross_sprite.png" id="13_gd6bj"]
 [ext_resource type="Texture2D" uid="uid://df0xurfnjn5ep" path="res://Assets/flip_sprite.png" id="14_5rk2m"]
+[ext_resource type="Script" uid="uid://b0ly25c8b642r" path="res://Main/candy_counter.gd" id="16_ugay7"]
 [ext_resource type="Script" uid="uid://upwl305wnpfs" path="res://Main/toffee_man_manager.gd" id="17_awsq4"]
 [ext_resource type="Texture2D" uid="uid://cbiifpma56rhe" path="res://Assets/candyman_hands.png" id="17_ga4qw"]
 [ext_resource type="Texture2D" uid="uid://en1435t71yqo" path="res://Assets/candyman_legs.png" id="18_eixk3"]
+[ext_resource type="Script" uid="uid://dvubk5sm8woej" path="res://Main/trick_manager.gd" id="22_1w1yd"]
+[ext_resource type="PackedScene" uid="uid://ucn2hiyidmr0" path="res://Utility/dialogue_holder.tscn" id="23_6trmk"]
+[ext_resource type="LabelSettings" uid="uid://4ynf6yhubvp2" path="res://Assets/candyman_dialogue_label.tres" id="23_t24rv"]
+[ext_resource type="Script" uid="uid://i5r1s10uaohs" path="res://Utility/dialogue_box.gd" id="24_kidvh"]
+[ext_resource type="Texture2D" uid="uid://doeo64nuef31h" path="res://Assets/dialogue_box_sprite.png" id="25_52ur3"]
+[ext_resource type="FontFile" uid="uid://i2fcdnecftyh" path="res://Assets/CaveatBrush-Regular.ttf" id="26_ugay7"]
+
+[sub_resource type="Animation" id="Animation_6trmk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flashlight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-15, 780)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("smelly_foot:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-110.00003, 797)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("smelly_foot:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5506197, 0.5506197)]
+}
+
+[sub_resource type="Animation" id="Animation_1w1yd"]
+resource_name = "flashlight_trick"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flashlight:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(-2, 1, -2, -2),
+"update": 0,
+"values": [Vector2(-15, 780), Vector2(-15, 427.00003), Vector2(-15, 427.00003), Vector2(-15, 780)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.73333335, 1.5),
+"transitions": PackedFloat32Array(1, 2, 2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6646h"]
+resource_name = "smell_trick"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("smelly_foot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5000001, 2.5),
+"transitions": PackedFloat32Array(-2, 1, 0.31864005, 1),
+"update": 0,
+"values": [Vector2(-110.00003, 797), Vector2(-110.00003, 400.99997), Vector2(-110.00003, 400.99997), Vector2(-110.00003, 797)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("smelly_foot:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8, 1.1, 1.5000001, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5506197, 0.5506197), Vector2(0.641, 0.641), Vector2(0.5506197, 0.5506197), Vector2(0.641, 0.641), Vector2(0.5506197, 0.5506197), Vector2(0.5506197, 0.5506197)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6646h"]
+_data = {
+&"RESET": SubResource("Animation_6trmk"),
+&"flashlight_trick": SubResource("Animation_1w1yd"),
+&"smell_trick": SubResource("Animation_6646h")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_t24rv"]
+line_spacing = -25.0
+font = ExtResource("26_ugay7")
+font_size = 80
+font_color = Color(0.072842635, 0.072842635, 0.072842635, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2jdc"]
 
@@ -164,9 +291,9 @@ _data = {
 &"page_flip": SubResource("Animation_pei01")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_pei01"]
-font = ExtResource("6_ofxgi")
-font_size = 50
+[sub_resource type="Theme" id="Theme_ugay7"]
+default_font = ExtResource("6_ofxgi")
+default_font_size = 45
 
 [sub_resource type="Animation" id="Animation_awsq4"]
 length = 0.001
@@ -339,6 +466,82 @@ spacing = 200.0
 
 [node name="CandyManager" type="Node" parent="EncounterManager"]
 
+[node name="TrickManager" type="Node2D" parent="." node_paths=PackedStringArray("trick_dialogue_holder", "character_manager")]
+z_index = 95
+script = ExtResource("22_1w1yd")
+trick_dialogue_holder = NodePath("dialogue_holder")
+character_manager = NodePath("../EncounterManager/CharacterManager")
+
+[node name="ColorRect" type="ColorRect" parent="TrickManager"]
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="flashlight" type="Sprite2D" parent="TrickManager"]
+position = Vector2(-15, 780)
+rotation = -0.5235988
+scale = Vector2(0.5004816, 0.5004816)
+texture = ExtResource("4_3oboq")
+region_enabled = true
+region_rect = Rect2(3500, 500, 750, 1000)
+
+[node name="smelly_foot" type="Sprite2D" parent="TrickManager"]
+position = Vector2(-110.00003, 797)
+rotation = -0.5235988
+scale = Vector2(0.5506197, 0.5506197)
+texture = ExtResource("4_3oboq")
+region_enabled = true
+region_rect = Rect2(4250, 500, 750, 1000)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TrickManager"]
+libraries = {
+&"": SubResource("AnimationLibrary_6646h")
+}
+
+[node name="dialogue_holder" parent="TrickManager" node_paths=PackedStringArray("init_text_box") instance=ExtResource("23_6trmk")]
+position = Vector2(722, 540)
+text_position = Vector2(-400, -400)
+init_text_box = NodePath("DialogueBox")
+
+[node name="DialogueBox" type="MarginContainer" parent="TrickManager/dialogue_holder" node_paths=PackedStringArray("label", "letter_display_timer")]
+visible = false
+offset_right = 488.0
+offset_bottom = 197.0
+script = ExtResource("24_kidvh")
+label = NodePath("MarginContainer/Label")
+letter_display_timer = NodePath("Timer")
+max_width = 500.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TrickManager/dialogue_holder/DialogueBox"]
+layout_mode = 2
+texture = ExtResource("25_52ur3")
+region_rect = Rect2(-0.006286621, -1.5636292, 293.01276, 145.00375)
+patch_margin_left = 60
+patch_margin_top = 50
+patch_margin_right = 40
+patch_margin_bottom = 40
+
+[node name="MarginContainer" type="MarginContainer" parent="TrickManager/dialogue_holder/DialogueBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 30
+
+[node name="Label" type="Label" parent="TrickManager/dialogue_holder/DialogueBox/MarginContainer"]
+layout_mode = 2
+text = "TofeeMan TofeeMan
+How do you do?"
+label_settings = SubResource("LabelSettings_t24rv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="TrickManager/dialogue_holder/DialogueBox"]
+one_shot = true
+
 [node name="TrickUiManager" type="Node2D" parent="." node_paths=PackedStringArray("flash_button", "smell_button", "dance_button", "sing_button")]
 z_index = 90
 position = Vector2(3, 6)
@@ -364,6 +567,7 @@ icon = ExtResource("4_3b31o")
 flat = true
 script = ExtResource("5_cd6sb")
 cost_label = NodePath("../flash_cost/Label")
+id = "flash"
 
 [node name="Sprite2D" type="Sprite2D" parent="TrickUiManager/flash_light_button"]
 position = Vector2(82, 102)
@@ -404,6 +608,7 @@ icon = ExtResource("4_3b31o")
 flat = true
 script = ExtResource("5_cd6sb")
 cost_label = NodePath("../smell_cost/Label")
+id = "smell"
 
 [node name="Sprite2D" type="Sprite2D" parent="TrickUiManager/smell_button"]
 position = Vector2(100, 106)
@@ -445,6 +650,7 @@ icon = ExtResource("4_3b31o")
 flat = true
 script = ExtResource("5_cd6sb")
 cost_label = NodePath("../dance_cost/Label")
+id = "dance"
 
 [node name="Sprite2D" type="Sprite2D" parent="TrickUiManager/dance_button"]
 position = Vector2(90, 104)
@@ -486,6 +692,7 @@ icon = ExtResource("4_3b31o")
 flat = true
 script = ExtResource("5_cd6sb")
 cost_label = NodePath("../song_cost/Label")
+id = "sing"
 
 [node name="Sprite2D" type="Sprite2D" parent="TrickUiManager/sing_button"]
 position = Vector2(84, 108)
@@ -720,9 +927,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_nfbf0")
 }
 
-[node name="CandyCounter" type="Node2D" parent="."]
+[node name="CandyCounter" type="Node2D" parent="." node_paths=PackedStringArray("candy_counter")]
 z_index = 91
 position = Vector2(-15, 0)
+script = ExtResource("16_ugay7")
+candy_counter = NodePath("CandyCounter")
 
 [node name="Sprite2D" type="Sprite2D" parent="CandyCounter"]
 position = Vector2(791, -263)
@@ -733,13 +942,17 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(0, 0, 500, 500)
 
-[node name="CandyCounter" type="Label" parent="CandyCounter"]
-offset_left = 844.0
-offset_top = -293.0
-offset_right = 963.0
-offset_bottom = -248.0
-text = "20"
-label_settings = SubResource("LabelSettings_pei01")
+[node name="CandyCounter" type="RichTextLabel" parent="CandyCounter"]
+offset_left = 841.0
+offset_top = -309.0
+offset_right = 960.0
+offset_bottom = -230.0
+theme = SubResource("Theme_ugay7")
+bbcode_enabled = true
+text = "[wave]200"
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ToffeeManManager" type="Node2D" parent="."]
 script = ExtResource("17_awsq4")
@@ -774,6 +987,45 @@ libraries = {
 &"": SubResource("AnimationLibrary_1w1yd")
 }
 
+[node name="dialogue_holder" parent="ToffeeManManager" node_paths=PackedStringArray("init_text_box") instance=ExtResource("23_6trmk")]
+init_text_box = NodePath("DialogueBox")
+
+[node name="DialogueBox" type="MarginContainer" parent="ToffeeManManager/dialogue_holder" node_paths=PackedStringArray("label", "letter_display_timer")]
+visible = false
+offset_right = 650.0
+offset_bottom = 237.0
+script = ExtResource("24_kidvh")
+label = NodePath("MarginContainer/Label")
+letter_display_timer = NodePath("Timer")
+max_width = 500.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ToffeeManManager/dialogue_holder/DialogueBox"]
+layout_mode = 2
+texture = ExtResource("25_52ur3")
+region_rect = Rect2(-0.006286621, -1.5636292, 293.01276, 145.00375)
+patch_margin_left = 60
+patch_margin_top = 50
+patch_margin_right = 40
+patch_margin_bottom = 40
+
+[node name="MarginContainer" type="MarginContainer" parent="ToffeeManManager/dialogue_holder/DialogueBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 30
+
+[node name="Label" type="Label" parent="ToffeeManManager/dialogue_holder/DialogueBox/MarginContainer"]
+layout_mode = 2
+text = "TofeeMan TofeeMan
+How do you do?"
+label_settings = ExtResource("23_t24rv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="ToffeeManManager/dialogue_holder/DialogueBox"]
+one_shot = true
+
 [node name="EnvironmentVisuals" type="Node2D" parent="."]
 z_index = -5
 
@@ -787,6 +1039,12 @@ texture = ExtResource("4_nsa0f")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="encounter_finished" from="EncounterManager/CharacterManager" to="EncounterManager" method="encounter_finished"]
+[connection signal="timeout" from="TrickManager/dialogue_holder/DialogueBox/Timer" to="TrickManager/dialogue_holder/DialogueBox" method="_on_timer_timeout"]
+[connection signal="trick_perform" from="TrickUiManager/flash_light_button" to="TrickManager" method="try_trick"]
+[connection signal="trick_perform" from="TrickUiManager/smell_button" to="TrickManager" method="try_trick"]
+[connection signal="trick_perform" from="TrickUiManager/dance_button" to="TrickManager" method="try_trick"]
+[connection signal="trick_perform" from="TrickUiManager/sing_button" to="TrickManager" method="try_trick"]
 [connection signal="button_down" from="NoteUiManager/note_button" to="NoteUiManager" method="show_note"]
 [connection signal="button_down" from="NoteUiManager/ColorRect/close_button" to="NoteUiManager" method="hide_note"]
 [connection signal="button_down" from="NoteUiManager/ColorRect/flip_button" to="NoteUiManager" method="flip"]
+[connection signal="timeout" from="ToffeeManManager/dialogue_holder/DialogueBox/Timer" to="ToffeeManManager/dialogue_holder/DialogueBox" method="_on_timer_timeout"]

@@ -15,6 +15,8 @@ signal encounter_finished
 
 func _ready() -> void:
 	var new_data = CharacterResource.new()
+	new_data.is_monster = true
+	new_data.monster_type = 3
 	new_data.height = CharacterResource.HEIGHT_TYPE.RANDOM
 	spawn_children([new_data, new_data.duplicate(), new_data.duplicate()])
 
@@ -74,3 +76,7 @@ func character_encounter_finished():
 func finish_encounter():
 	_timer_active = false
 	encounter_finished.emit()
+
+func try_trick(trick_name : String):
+	for child in _current_children:
+		child.respond_to_trick(trick_name)
