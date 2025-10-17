@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TrickOfTheTreat"
-run/main_scene="uid://bcmy55rouaxrl"
+run/main_scene="uid://d26g57un6eifm"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -25,6 +25,7 @@ MusicManager="*res://Utility/music_manager.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"

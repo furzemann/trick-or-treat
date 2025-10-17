@@ -1,6 +1,9 @@
 extends Node
 
 signal candies_changed
+
+func _ready() -> void:
+	MusicManager.play_theme("theme2")
 var candies : int = 10:
 	set(value):
 		var sgn = sign(value - candies)
