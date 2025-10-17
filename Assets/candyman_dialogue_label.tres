@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://4ynf6yhubvp2"]
+
+[ext_resource type="FontFile" uid="uid://c6cgedb5ppjas" path="res://Assets/Quasimodo Regular.ttf" id="1_mrf12"]
+
+[resource]
+line_spacing = -4.58
+font = ExtResource("1_mrf12")
+font_size = 80
+font_color = Color(0.072842635, 0.072842635, 0.072842635, 1)
