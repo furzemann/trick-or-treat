@@ -1,0 +1,65 @@
+[gd_scene load_steps=12 format=3 uid="uid://d26g57un6eifm"]
+
+[ext_resource type="Texture2D" uid="uid://cq1ovs0j5r1si" path="res://Assets/render_bg.png" id="1_vrvlg"]
+[ext_resource type="Script" uid="uid://yidcydr1n00u" path="res://Main/main_menu.gd" id="1_vw6x6"]
+[ext_resource type="PackedScene" uid="uid://bcmy55rouaxrl" path="res://Main/GameScene.tscn" id="2_3mueg"]
+[ext_resource type="Texture2D" uid="uid://b7a2hd3lletyh" path="res://Assets/render_fg.png" id="2_vw6x6"]
+[ext_resource type="Script" uid="uid://jcci6s0dnqiy" path="res://Main/hover_zoom.gd" id="4_bprq1"]
+[ext_resource type="FontFile" uid="uid://c6cgedb5ppjas" path="res://Assets/Quasimodo Regular.ttf" id="4_l00uc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3mueg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ooiy0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7lqxf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_63ly2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_disks"]
+
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("start_Button")]
+script = ExtResource("1_vw6x6")
+start_Button = NodePath("Start")
+next_scene = ExtResource("2_3mueg")
+
+[node name="EnvironmentVisuals" type="Node2D" parent="."]
+z_index = -5
+
+[node name="RenderBg" type="Sprite2D" parent="EnvironmentVisuals"]
+z_index = -2
+texture = ExtResource("1_vrvlg")
+
+[node name="RenderFg" type="Sprite2D" parent="EnvironmentVisuals"]
+texture = ExtResource("2_vw6x6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Start" type="Button" parent="."]
+offset_left = -160.0
+offset_top = 280.0
+offset_right = 153.0
+offset_bottom = 378.0
+theme_override_fonts/font = ExtResource("4_l00uc")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3mueg")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ooiy0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7lqxf")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_63ly2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_disks")
+text = "Start"
+
+[node name="hover_zoom" type="Node" parent="Start"]
+script = ExtResource("4_bprq1")
+metadata/_custom_type_script = "uid://jcci6s0dnqiy"
+
+[node name="GameName" type="Label" parent="."]
+offset_left = -496.0
+offset_top = -296.0
+offset_right = 545.0
+offset_bottom = 67.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("4_l00uc")
+theme_override_font_sizes/font_size = 200
+text = "Trick of
+the Treat"
