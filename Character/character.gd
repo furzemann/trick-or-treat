@@ -203,6 +203,8 @@ func finish_character_encounter(correct := true) -> void:
 	is_finished = true
 	character_encounter_finished.emit()
 
+
+
 func respond_to_trick(trick_name: String):
 	anim_player.play("RESET")
 	await get_tree().process_frame
@@ -231,3 +233,9 @@ func respond_to_trick(trick_name: String):
 			sniff_particles.hide()
 		
 	reset_to_idle()
+
+func _on_detect_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if Input.is_action_just_pressed("left_click"):
+		pass
+	elif Input.is_action_just_pressed("right_click"):
+		pass

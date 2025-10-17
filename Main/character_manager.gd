@@ -27,12 +27,13 @@ func _process(delta: float) -> void:
 			return_remaining_children()
 
 func spawn_children(child_data_array : Array[CharacterResource]):
+	if not character_scene:
+		return
+	
 	for child in _current_children:
 		child.queue_free()
 	_current_children.clear()
 	
-	if not character_scene:
-		return
 	var positions = arrange_positions(child_data_array.size())
 	
 	for i in child_data_array.size():
@@ -41,6 +42,7 @@ func spawn_children(child_data_array : Array[CharacterResource]):
 		_current_children.push_back(new_child)
 		new_child.create_costume(child_data_array[i])
 		new_child.global_position = positions[i]
+		new_child.character_encounter_finished.connect(character_encounter_finished)
 		await get_tree().create_timer(child_spawn_delay).timeout
 	
 func start_timer(time):
