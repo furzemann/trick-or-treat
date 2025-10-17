@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=5 format=3 uid="uid://0fkmbpw873tc"]
+
+[ext_resource type="Script" uid="uid://cct0i013gy2pi" path="res://Main/EncounterData.gd" id="1_h2o8g"]
+[ext_resource type="Script" uid="uid://bbxn7k3xhtfhe" path="res://Character/character_resource.gd" id="2_1y1ke"]
+
+[sub_resource type="Resource" id="Resource_h2o8g"]
+script = ExtResource("2_1y1ke")
+is_monster = true
+is_full_outfit = true
+monster_type = 3
+height = 1
+dialogue = "I did not share my candy, now I wandy-r."
+treat_dialogue = "Thank you mister, even more for me~"
+trick_dialogue = "Noooo~ I should have shared the candies with my brothers."
+metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
+
+[sub_resource type="Resource" id="Resource_1y1ke"]
+script = ExtResource("2_1y1ke")
+is_monster = true
+is_masked = true
+height = 1
+metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
+
+[resource]
+script = ExtResource("1_h2o8g")
+visitors = Array[ExtResource("2_1y1ke")]([SubResource("Resource_h2o8g"), SubResource("Resource_1y1ke")])
+take_candy = 20
+metadata/_custom_type_script = "uid://cct0i013gy2pi"

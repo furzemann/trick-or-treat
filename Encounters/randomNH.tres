@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=3 format=3 uid="uid://b40etfhwa7x3e"]
+
+[ext_resource type="Script" uid="uid://cct0i013gy2pi" path="res://Main/EncounterData.gd" id="1_2ta0e"]
+[ext_resource type="Script" uid="uid://bbxn7k3xhtfhe" path="res://Character/character_resource.gd" id="2_22h77"]
+
+[resource]
+script = ExtResource("1_2ta0e")
+event = 0
+metadata/_custom_type_script = "uid://cct0i013gy2pi"

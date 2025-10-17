@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://xjmtkmsope2x"]
+[gd_scene load_steps=7 format=3 uid="uid://xjmtkmsope2x"]
 
 [ext_resource type="Script" uid="uid://dxa5tnvatu6y8" path="res://Utility/music_manager.gd" id="1_tylfe"]
+[ext_resource type="AudioStream" uid="uid://dkqrban4uxqli" path="res://music/taint_no_sin_to_take_your_skin_off.wav" id="2_hcqgt"]
+[ext_resource type="AudioStream" uid="uid://ctdjp22v3i4ab" path="res://music/swingin_at_the_sance.wav" id="3_uujsp"]
+[ext_resource type="AudioStream" uid="uid://dkl3gv2isr87k" path="res://music/white_shivers.wav" id="4_ut3qg"]
+[ext_resource type="AudioStream" uid="uid://d18xitgq5rsuf" path="res://music/haunted_blues.wav" id="5_ut3qg"]
+[ext_resource type="AudioStream" uid="uid://b1e4h3kangov2" path="res://music/candyman_music.wav" id="5_uujsp"]
 
 [node name="MusicManager" type="AudioStreamPlayer"]
 script = ExtResource("1_tylfe")
+_theme_dictionary = Dictionary[String, AudioStream]({
+"candyman_theme": ExtResource("5_uujsp"),
+"theme1": ExtResource("2_hcqgt"),
+"theme2": ExtResource("3_uujsp"),
+"theme3": ExtResource("4_ut3qg"),
+"theme4": ExtResource("5_ut3qg")
+})

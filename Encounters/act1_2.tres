@@ -7,9 +7,10 @@
 script = ExtResource("2_r2ml5")
 is_monster = true
 height = 3
-dialogue = "may I have some cansy? or do I give candy?"
+dialogue = "May I have some cansy? or do I give candy?"
 treat_dialogue = "You shouldn't giving candy to a monster"
 trick_dialogue = "You sleuth'd me. Have me candy."
+penalty_increase = false
 metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
 
 [resource]

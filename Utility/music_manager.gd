@@ -4,7 +4,7 @@ extends AudioStreamPlayer
 
 var _set_volume := 0.
 
-func play_theme(theme_name : String = "level theme", volume := 0.):
+func play_theme(theme_name : String = "theme1", volume := 0.):
 	if _theme_dictionary.has(theme_name):
 		switch_track(_theme_dictionary[theme_name], volume)
 		_set_volume = volume

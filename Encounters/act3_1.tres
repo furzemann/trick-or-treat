@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=5 format=3 uid="uid://e8e0tr2km7jd"]
+
+[ext_resource type="Script" uid="uid://cct0i013gy2pi" path="res://Main/EncounterData.gd" id="1_ysatr"]
+[ext_resource type="Script" uid="uid://bbxn7k3xhtfhe" path="res://Character/character_resource.gd" id="2_ajqof"]
+
+[sub_resource type="Resource" id="Resource_ysatr"]
+script = ExtResource("2_ajqof")
+is_masked = true
+dialogue = "We had a brother. HE didn't share his candy."
+treat_dialogue = "You are a wise man, mister."
+trick_dialogue = "You are not a wise man mister."
+metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
+
+[sub_resource type="Resource" id="Resource_ajqof"]
+script = ExtResource("2_ajqof")
+is_full_outfit = true
+height = 2
+dialogue = "He had a lot of candies and then he died."
+treat_dialogue = "You won't end up like him."
+trick_dialogue = "You will end up like him."
+penalty_increase = false
+metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
+
+[resource]
+script = ExtResource("1_ysatr")
+visitors = Array[ExtResource("2_ajqof")]([SubResource("Resource_ysatr"), SubResource("Resource_ajqof")])
+metadata/_custom_type_script = "uid://cct0i013gy2pi"
