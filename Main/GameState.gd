@@ -1,14 +1,16 @@
 extends Node
 
 signal candies_changed
+var scene_camera : SceneCamera
 
 func _ready() -> void:
-	MusicManager.play_theme("theme2")
+	MusicManager.play_theme("theme1", -10)
+
 var candies : int = 10:
 	set(value):
-		var sgn = sign(value - candies)
+		var diff = (value - candies)
 		candies = clamp(value, 0, 999)
-		candies_changed.emit(sgn)
+		candies_changed.emit(diff)
 
 signal flash_cost_changed
 var flash_cost : int = 3:
@@ -33,3 +35,11 @@ var sing_cost : int = 2:
 	set(value):
 		sing_cost = value
 		sing_cost_changed.emit()
+
+signal penalty_changed
+var penalty : int = 0:
+	set(value):
+		penalty = value
+		penalty_changed.emit()
+	get:
+		return penalty

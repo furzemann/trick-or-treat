@@ -6,6 +6,7 @@ class_name CharacterManager
 @export var spacing := 60.
 @export var vertical_randomness := 5.
 @export var child_spawn_delay := 0.5
+@export var angry_time := 5.
 
 var _current_children : Array[Character]
 var _timer := 99.
@@ -16,6 +17,8 @@ signal encounter_finished
 func _process(delta: float) -> void:
 	if _timer_active:
 		_timer -= delta
+		if _timer <= angry_time:
+			make_children_angry()
 		if _timer <= 0.:
 			return_remaining_children()
 
@@ -77,3 +80,7 @@ func finish_encounter():
 func try_trick(trick_name : String):
 	for child in _current_children:
 		child.respond_to_trick(trick_name)
+
+func make_children_angry():
+	for child in _current_children:
+		child.get_angry()

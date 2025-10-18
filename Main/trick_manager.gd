@@ -23,15 +23,19 @@ func try_trick(trick_name : String, cost : int):
 	character_manager.try_trick(trick_name)
 
 func flashlight_trick():
+	SfxManager.play_sfx("trick")
 	_trick_active = true
 	trick_dialogue_holder.start_dialogue(["Trick or Treat, get really lit!"])
 	await get_tree().create_timer(0.2).timeout
 	animation_player.play("flashlight_trick")
-	await get_tree().create_timer(2.).timeout
+	await get_tree().create_timer(.45).timeout
+	SfxManager.play_sfx("ui_sfx2")
+	await get_tree().create_timer(1.65).timeout
 	trick_dialogue_holder._remove_last_dialogue()
 	end_trick()
 
 func smell_trick():
+	SfxManager.play_sfx("trick")
 	_trick_active = true
 	trick_dialogue_holder.start_dialogue(["Trick or Treat, smell my feet!"])
 	await get_tree().create_timer(0.2).timeout
@@ -41,6 +45,7 @@ func smell_trick():
 	end_trick()
 
 func dance_trick():
+	SfxManager.play_sfx("trick")
 	_trick_active = true
 	trick_dialogue_holder.start_dialogue(["Trick or Treat, dance to the beat!"])
 	await get_tree().create_timer(2.).timeout
@@ -48,6 +53,8 @@ func dance_trick():
 	end_trick()
 
 func sing_trick():
+	SfxManager.play_sfx("trick")
+	SfxManager.sing(true, 4., randf_range(.3,1.), 0.0, 3.28)
 	_trick_active = true
 	trick_dialogue_holder.start_dialogue(["Trick or Treat, sing really neat!"])
 	await get_tree().create_timer(2.).timeout

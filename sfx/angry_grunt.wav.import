@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://b0o4a1bhk1xhc"
-path="res://.godot/imported/candyman2.wav-2678298efb0e676a3f670fb00a394d31.sample"
+uid="uid://cl83ahb237kuh"
+path="res://.godot/imported/angry_grunt.wav-0fb8edcbcb3829087f2c82c8b91f8a04.sample"
 
 [deps]
 
-source_file="res://sfx/candyman2.wav"
-dest_files=["res://.godot/imported/candyman2.wav-2678298efb0e676a3f670fb00a394d31.sample"]
+source_file="res://sfx/angry_grunt.wav"
+dest_files=["res://.godot/imported/angry_grunt.wav-0fb8edcbcb3829087f2c82c8b91f8a04.sample"]
 
 [params]
 

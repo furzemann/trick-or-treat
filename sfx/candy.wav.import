@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cri2tgitp3wh5"
-path="res://.godot/imported/candyman3.wav-6d7c6bf627bb9d2c10e7653127e38968.sample"
+uid="uid://u0iqvmlsdhpc"
+path="res://.godot/imported/candy.wav-28bc7da3296355e3fca8aee0d10d7d27.sample"
 
 [deps]
 
-source_file="res://sfx/candyman3.wav"
-dest_files=["res://.godot/imported/candyman3.wav-6d7c6bf627bb9d2c10e7653127e38968.sample"]
+source_file="res://sfx/candy.wav"
+dest_files=["res://.godot/imported/candy.wav-28bc7da3296355e3fca8aee0d10d7d27.sample"]
 
 [params]
 

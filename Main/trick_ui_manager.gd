@@ -18,3 +18,10 @@ func _update_visuals():
 	smell_button.cost = GameState.smell_cost
 	dance_button.cost = GameState.dance_cost
 	sing_button.cost = GameState.sing_cost
+
+#TODO
+func disable_ui():
+	pass
+
+func enable_ui():
+	pass

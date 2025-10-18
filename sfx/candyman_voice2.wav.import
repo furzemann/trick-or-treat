@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ddl6e17pv36v3"
-path="res://.godot/imported/candyman.wav-e1ed497cf309a4605cc31eb45fb32add.sample"
+path="res://.godot/imported/candyman_voice2.wav-9fe0cfdaa34a839f6806d5645aae684a.sample"
 
 [deps]
 
-source_file="res://sfx/candyman.wav"
-dest_files=["res://.godot/imported/candyman.wav-e1ed497cf309a4605cc31eb45fb32add.sample"]
+source_file="res://sfx/candyman_voice2.wav"
+dest_files=["res://.godot/imported/candyman_voice2.wav-9fe0cfdaa34a839f6806d5645aae684a.sample"]
 
 [params]
 

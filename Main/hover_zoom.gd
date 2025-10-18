@@ -22,6 +22,7 @@ func _ready() -> void:
 		queue_free()
 
 func _on_mouse_entered() -> void:
+	SfxManager.play_sfx('button_hover')
 	if zoom_tween:
 		zoom_tween.kill()
 	zoom_tween = create_tween()

@@ -4,10 +4,12 @@ class_name EncounterManager
 @export var EncounterOrder : Array[EncounterData] 
 @export var character_manager : CharacterManager
 @export var encounter_delay : float = 2
+@export var toffee_man_manager : ToffeeManManager
 
 var _index := 0
 
 func _ready() -> void:
+	toffee_man_manager.encounter_finished.connect(_on_toffeeman_encounter_finished)
 	await get_tree().create_timer(1).timeout
 	start_next_encounter()
 
@@ -53,13 +55,21 @@ func parse_encounter_data(encounter_data : EncounterData) -> Array[CharacterReso
 				visitor.height = CharacterResource.HEIGHT_TYPE.RANDOM
 				array.push_back(visitor)
 		EncounterData.SPECIAL_ENCOUNTER.CANDYMAN1:
+			toffee_man_manager._appear_candyman()
 			pass
 		EncounterData.SPECIAL_ENCOUNTER.CANDYMAN2:
+			toffee_man_manager._appear_candyman()
 			pass
 		EncounterData.SPECIAL_ENCOUNTER.CANDYMAN3:
+			toffee_man_manager._appear_candyman()
 			pass
 	return array
 
 func encounter_finished():
 	await get_tree().create_timer(encounter_delay).timeout
+	start_next_encounter()
+
+func _on_toffeeman_encounter_finished():
+	toffee_man_manager._disappear_candyman()
+	await toffee_man_manager._disappear_candyman()
 	start_next_encounter()

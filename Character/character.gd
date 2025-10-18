@@ -2,6 +2,7 @@ extends Node2D
 class_name Character
 
 signal character_encounter_finished
+var _candy_business_finished := false
 var is_finished := false
 
 var take_candy : int
@@ -38,6 +39,7 @@ var give_candy : int
 
 @export var dialogue_holder : DialogueHolder
 @onready var anim_player: AnimationPlayer = $anim_player
+@onready var voice_pitch := randf_range(0.5,1.3)
 
 
 func rand_chance(probability: float) -> bool:
@@ -56,6 +58,7 @@ func rand_chance(probability: float) -> bool:
 		#create_costume(new_char_data)
 #
 func _ready() -> void:
+	SfxManager.play_sfx("pop_up",0.0,true)
 	reset_to_idle()
 	dialogue_holder.hide()
 
@@ -66,6 +69,7 @@ func reset_to_idle():
 func say_dialogue(dialogue: Array[String]):
 	dialogue_holder.show()
 	dialogue_holder.start_dialogue(dialogue)
+	SfxManager.random_npc_sounds(true, 10, voice_pitch)
 
 func create_costume(char_resource: CharacterResource):
 	char_data = char_resource
@@ -241,6 +245,8 @@ func respond_to_trick(trick_name: String):
 	reset_to_idle()
 
 func _on_detect_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
+	if _candy_business_finished:
+		return
 	var response_anim: AnimationPlayer = $response_anim
 	if Input.is_action_just_pressed("left_click"): #treat attempt
 		if char_data.is_monster:
@@ -260,6 +266,11 @@ func _on_detect_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx
 			say_dialogue([char_data.trick_dialogue])
 	else:
 		return
+	_candy_business_finished = true
 	response_anim.play("response")
 	await response_anim.animation_finished
 	finish_character_encounter()
+
+func get_angry():
+	if not anger_particles.emitting:
+		anger_particles.emitting = true

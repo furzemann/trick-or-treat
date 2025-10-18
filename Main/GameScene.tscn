@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bcmy55rouaxrl"]
+[gd_scene load_steps=78 format=3 uid="uid://bcmy55rouaxrl"]
 
 [ext_resource type="Script" uid="uid://c7q3k0fj5egj3" path="res://Main/encounter_manager.gd" id="1_nsa0f"]
 [ext_resource type="Texture2D" uid="uid://cq1ovs0j5r1si" path="res://Assets/render_bg.png" id="2_6p2ui"]
@@ -43,6 +43,9 @@
 [ext_resource type="Script" uid="uid://i5r1s10uaohs" path="res://Utility/dialogue_box.gd" id="24_kidvh"]
 [ext_resource type="Texture2D" uid="uid://doeo64nuef31h" path="res://Assets/dialogue_box_sprite.png" id="25_52ur3"]
 [ext_resource type="FontFile" uid="uid://i2fcdnecftyh" path="res://Assets/CaveatBrush-Regular.ttf" id="26_ugay7"]
+[ext_resource type="AudioStream" uid="uid://4fpxxnb2l3bb" path="res://sfx/wood_creak1.wav" id="41_nij46"]
+[ext_resource type="AudioStream" uid="uid://tamuvlyyvv73" path="res://sfx/wood_creak2.wav" id="42_3qh5f"]
+[ext_resource type="Script" uid="uid://q3dwmqby7xjp" path="res://Main/camera_2d.gd" id="44_ep3cl"]
 
 [sub_resource type="Animation" id="Animation_6trmk"]
 length = 0.001
@@ -310,6 +313,71 @@ _data = {
 default_font = ExtResource("6_ofxgi")
 default_font_size = 45
 
+[sub_resource type="Theme" id="Theme_4tksw"]
+default_font = ExtResource("6_ofxgi")
+default_font_size = 35
+
+[sub_resource type="Animation" id="Animation_qp4ph"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UpdateCounter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UpdateCounter:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(841, -353)]
+}
+
+[sub_resource type="Animation" id="Animation_ep3cl"]
+resource_name = "update_anim"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UpdateCounter:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.5),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UpdateCounter:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(841, -353), Vector2(841, -381)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nij46"]
+_data = {
+&"RESET": SubResource("Animation_qp4ph"),
+&"update_anim": SubResource("Animation_ep3cl")
+}
+
 [sub_resource type="Animation" id="Animation_awsq4"]
 length = 0.001
 tracks/0/type = "value"
@@ -379,6 +447,30 @@ tracks/5/path = NodePath("ToffeeFeet:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer:stream")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -460,6 +552,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer:stream")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2, 3.7333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("41_nij46"), ExtResource("42_3qh5f")]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.9, 3.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1w1yd"]
 _data = {
@@ -467,13 +583,17 @@ _data = {
 &"toffeeMan appears": SubResource("Animation_eixk3")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ep3cl"]
+radius = 251.0
+height = 868.0
+
 [node name="GameScene" type="Node2D"]
 
-[node name="EncounterManager" type="Node" parent="." node_paths=PackedStringArray("character_manager")]
+[node name="EncounterManager" type="Node" parent="." node_paths=PackedStringArray("character_manager", "toffee_man_manager")]
 script = ExtResource("1_nsa0f")
 EncounterOrder = Array[ExtResource("2_t24rv")]([ExtResource("3_wyx31"), ExtResource("4_4tksw"), ExtResource("5_ep3cl"), ExtResource("5_ep3cl"), ExtResource("5_ep3cl"), ExtResource("6_qp4ph"), ExtResource("7_nij46"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("9_8qyju"), ExtResource("5_ep3cl"), ExtResource("5_ep3cl"), ExtResource("10_h2rpr"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("11_6yoci"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("12_hmuuh"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("13_xdwu3"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("5_ep3cl"), ExtResource("14_qq12m"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("5_ep3cl"), ExtResource("5_ep3cl"), ExtResource("15_6d5qv"), ExtResource("8_3qh5f"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("16_3hp3f")])
 character_manager = NodePath("CharacterManager")
-encounter_delay = null
+toffee_man_manager = NodePath("../ToffeeManManager")
 
 [node name="CharacterManager" type="Node" parent="EncounterManager"]
 script = ExtResource("2_s1tig")
@@ -944,11 +1064,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_nfbf0")
 }
 
-[node name="CandyCounter" type="Node2D" parent="." node_paths=PackedStringArray("candy_counter")]
+[node name="CandyCounter" type="Node2D" parent="." node_paths=PackedStringArray("candy_counter", "update_counter")]
 z_index = 91
 position = Vector2(-15, 0)
 script = ExtResource("16_ugay7")
 candy_counter = NodePath("CandyCounter")
+update_counter = NodePath("UpdateCounter")
 
 [node name="Sprite2D" type="Sprite2D" parent="CandyCounter"]
 position = Vector2(791, -263)
@@ -971,8 +1092,28 @@ autowrap_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ToffeeManManager" type="Node2D" parent="."]
+[node name="UpdateCounter" type="RichTextLabel" parent="CandyCounter"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 841.0
+offset_top = -353.0
+offset_right = 960.0
+offset_bottom = -274.0
+theme = SubResource("Theme_4tksw")
+bbcode_enabled = true
+text = "[wave]+200"
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CandyCounter"]
+libraries = {
+&"": SubResource("AnimationLibrary_nij46")
+}
+
+[node name="ToffeeManManager" type="Node2D" parent="." node_paths=PackedStringArray("trick_ui", "dialogue_holder")]
 script = ExtResource("17_awsq4")
+trick_ui = NodePath("../TrickUiManager")
+dialogue_holder = NodePath("dialogue_holder")
 
 [node name="ToffeeHands" type="Sprite2D" parent="ToffeeManManager"]
 visible = false
@@ -1005,10 +1146,12 @@ libraries = {
 }
 
 [node name="dialogue_holder" parent="ToffeeManManager" node_paths=PackedStringArray("init_text_box") instance=ExtResource("23_6trmk")]
+visible = false
+position = Vector2(-283, -262)
+text_position = Vector2(380, 500)
 init_text_box = NodePath("DialogueBox")
 
 [node name="DialogueBox" type="MarginContainer" parent="ToffeeManManager/dialogue_holder" node_paths=PackedStringArray("label", "letter_display_timer")]
-visible = false
 offset_right = 650.0
 offset_bottom = 237.0
 script = ExtResource("24_kidvh")
@@ -1043,6 +1186,15 @@ vertical_alignment = 1
 [node name="Timer" type="Timer" parent="ToffeeManManager/dialogue_holder/DialogueBox"]
 one_shot = true
 
+[node name="detect_toffeeman_area" type="Area2D" parent="ToffeeManManager"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToffeeManManager/detect_toffeeman_area"]
+position = Vector2(-303, 33)
+shape = SubResource("CapsuleShape2D_ep3cl")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ToffeeManManager"]
+
 [node name="EnvironmentVisuals" type="Node2D" parent="."]
 z_index = -5
 
@@ -1054,6 +1206,7 @@ texture = ExtResource("2_6p2ui")
 texture = ExtResource("4_nsa0f")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("44_ep3cl")
 
 [connection signal="encounter_finished" from="EncounterManager/CharacterManager" to="EncounterManager" method="encounter_finished"]
 [connection signal="timeout" from="TrickManager/dialogue_holder/DialogueBox/Timer" to="TrickManager/dialogue_holder/DialogueBox" method="_on_timer_timeout"]
@@ -1065,3 +1218,4 @@ texture = ExtResource("4_nsa0f")
 [connection signal="button_down" from="NoteUiManager/ColorRect/close_button" to="NoteUiManager" method="hide_note"]
 [connection signal="button_down" from="NoteUiManager/ColorRect/flip_button" to="NoteUiManager" method="flip"]
 [connection signal="timeout" from="ToffeeManManager/dialogue_holder/DialogueBox/Timer" to="ToffeeManManager/dialogue_holder/DialogueBox" method="_on_timer_timeout"]
+[connection signal="input_event" from="ToffeeManManager/detect_toffeeman_area" to="ToffeeManManager" method="_on_detect_toffeeman_area_input_event"]
