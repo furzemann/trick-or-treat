@@ -1,62 +1,101 @@
 extends Node2D
 class_name ToffeeManManager
 
-@export var trick_ui : Node2D
+@export var trick_ui : TrickUiManager
 @export var dialogue_holder : DialogueHolder
+@export var detection_area : Area2D
 
 @export var candyman1_dialogue : Array[String]
-@export var candyman1_base_cost : int = 5
 @export var candyman2_dialogue : Array[String]
-@export var candyman2_base_cost : int = 30
 @export var candyman3_dialogue : Array[String]
-@export var candyman3_base_cost : int = 60
 
-var cost : int
+@export var candyman_fail_dialogue : Array[String]
+@export var candyman_trick_dialogue : Array[String]
+@export var candyman1_treat_dialogue : Array[String]
+@export var candyman2_treat_dialogue : Array[String]
+@export var candyman3_treat_dialogue : Array[String]
+
+var _current_treat_dialogue : Array[String]
+var _next_cost := 50
 
 signal encounter_finished
-signal gameover
+signal anim_finished
 
-func _ready() -> void:
-	$detect_toffeeman_area.hide()
-	dialogue_holder.hide()
-	gameover.connect(_on_gameover)
+func _ready():
+	_disable_detector()
 
 func CANDYMAN1():
-	say_dialogue(candyman1_dialogue)
-	cost = candyman1_base_cost + GameState.penalty
+	_appear_candyman()
+	await anim_finished
+	dialogue_holder.start_dialogue(candyman1_dialogue)
+	await dialogue_holder.dialogue_finished
+	_current_treat_dialogue = candyman1_treat_dialogue
+	_next_cost = 60
+	_enable_detector()
+
 
 func CANDYMAN2():
-	say_dialogue(candyman2_dialogue)
-	cost = candyman2_base_cost + GameState.penalty
+	_appear_candyman()
+	await anim_finished
+	dialogue_holder.start_dialogue(candyman2_dialogue)
+	await dialogue_holder.dialogue_finished
+	_current_treat_dialogue = candyman2_treat_dialogue
+	_next_cost = 90
+	_enable_detector()
+
 
 func CANDYMAN3():
-	say_dialogue(candyman3_dialogue)
-	cost = candyman3_base_cost + GameState.penalty
+	_appear_candyman()
+	await anim_finished
+	dialogue_holder.start_dialogue(candyman3_dialogue)
+	await dialogue_holder.dialogue_finished
+	_current_treat_dialogue = candyman3_treat_dialogue
+	_next_cost = 150
+	_enable_detector()
+
 
 func _appear_candyman():
+	MusicManager.pause_theme(-80)
+	trick_ui.disable_ui()
 	$AnimationPlayer.play("toffeeMan appears")
 	await $AnimationPlayer.animation_finished
-	$detect_toffeeman_area.show()
+	$AnimationPlayer.play_backwards("idle")
+	anim_finished.emit()
 
 func _disappear_candyman():
 	$AnimationPlayer.play_backwards("toffeeMan appears")
 	await $AnimationPlayer.animation_finished
-	$detect_toffeeman_area.hide()
-	encounter_finished.emit()
-
-func say_dialogue(dialogue: Array[String]):
-	dialogue_holder.show()
-	dialogue_holder.start_dialogue(dialogue)
-	#Play_sfx Candyman Dialgue
-
-func _on_detect_toffeeman_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event.is_action_pressed("left_click"):
-		if GameState.candies > cost:
-			GameState.candies -= cost
-			encounter_finished.emit()
-		else:
-			gameover.emit()
-
+	MusicManager.resume_theme()
+	anim_finished.emit()
+	trick_ui.enable_ui()
 
 func _on_gameover():
-	pass
+	print("GameOver")
+
+func _on_detect_toffeeman_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if Input.is_action_just_pressed("left_click"):
+		_disable_detector()
+		var fail : bool = GameState.toffeeman_cost > GameState.candies
+		GameState.candies = GameState.candies - GameState.toffeeman_cost
+		if fail:
+			dialogue_holder.start_dialogue(candyman_fail_dialogue)
+			await dialogue_holder.dialogue_finished
+			_on_gameover()
+		else:
+			dialogue_holder.start_dialogue(_current_treat_dialogue)
+			await dialogue_holder.dialogue_finished
+			_disappear_candyman()
+			await anim_finished
+			dialogue_holder.remove_last_dialogue()
+			encounter_finished.emit()
+			GameState.toffeeman_cost = _next_cost
+	elif Input.is_action_just_pressed("right_click"):
+		dialogue_holder.start_dialogue(candyman_trick_dialogue)
+	else:
+		return
+
+func _disable_detector():
+	detection_area.collision_layer = 0
+
+func _enable_detector():
+	detection_area.collision_layer = 1

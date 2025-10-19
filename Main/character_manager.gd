@@ -14,13 +14,14 @@ var _timer_active := false
 
 signal encounter_finished
 
-func _process(delta: float) -> void:
-	if _timer_active:
-		_timer -= delta
-		if _timer <= angry_time:
-			make_children_angry()
-		if _timer <= 0.:
-			return_remaining_children()
+#TODO
+#func _process(delta: float) -> void:
+	#if _timer_active:
+		#_timer -= delta
+		#if _timer <= angry_time:
+			#make_children_angry()
+		#if _timer <= 0.:
+			#return_remaining_children()
 
 func spawn_children(child_data_array : Array[CharacterResource], encounter_data : EncounterData):
 	if not character_scene:

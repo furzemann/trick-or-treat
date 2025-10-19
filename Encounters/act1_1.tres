@@ -14,5 +14,6 @@ metadata/_custom_type_script = "uid://bbxn7k3xhtfhe"
 [resource]
 script = ExtResource("1_qxqpf")
 visitors = Array[ExtResource("2_wqs4d")]([SubResource("Resource_aovek")])
+timer = 999.0
 take_candy = 0
 metadata/_custom_type_script = "uid://cct0i013gy2pi"

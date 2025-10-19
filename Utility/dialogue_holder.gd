@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func start_dialogue(script: Array[String]):
 	if _dialogue_active:
-		_remove_last_dialogue()
+		remove_last_dialogue()
 	_current_script = script
 	_current_script_index = 0
 	_dialogue_active = true
@@ -45,7 +45,7 @@ func _next_line():
 
 	_current_script_index += 1
 
-func _remove_last_dialogue():
+func remove_last_dialogue():
 	if text_box:
 		text_box.queue_free()
 		dialogue_tail.hide()

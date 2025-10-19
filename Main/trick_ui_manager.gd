@@ -19,9 +19,16 @@ func _update_visuals():
 	dance_button.cost = GameState.dance_cost
 	sing_button.cost = GameState.sing_cost
 
-#TODO
 func disable_ui():
-	pass
+	hide()
+	flash_button.set_disabled(true)
+	smell_button.set_disabled(true)
+	dance_button.set_disabled(true)
+	sing_button.set_disabled(true)
 
 func enable_ui():
-	pass
+	show()
+	flash_button.set_disabled(false)
+	smell_button.set_disabled(false)
+	dance_button.set_disabled(false)
+	sing_button.set_disabled(false)

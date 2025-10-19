@@ -6,7 +6,7 @@ var scene_camera : SceneCamera
 func _ready() -> void:
 	MusicManager.play_theme("theme1", -10)
 
-var candies : int = 10:
+var candies : int = 100:
 	set(value):
 		var diff = (value - candies)
 		candies = clamp(value, 0, 999)
@@ -41,5 +41,11 @@ var penalty : int = 0:
 	set(value):
 		penalty = value
 		penalty_changed.emit()
-	get:
-		return penalty
+
+signal toffeeman_cost_changed
+var toffeeman_cost : int = 30:
+	set(value):
+		toffeeman_cost = value
+		toffeeman_cost_changed.emit()
+
+var toffeeman_increment : int = 2

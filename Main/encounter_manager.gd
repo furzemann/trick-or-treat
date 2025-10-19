@@ -5,11 +5,15 @@ class_name EncounterManager
 @export var character_manager : CharacterManager
 @export var encounter_delay : float = 2
 @export var toffee_man_manager : ToffeeManManager
+@export var trick_ui_manager : TrickUiManager
+@export var note_manager : NoteUiManager
 
 var _index := 0
 
 func _ready() -> void:
-	toffee_man_manager.encounter_finished.connect(_on_toffeeman_encounter_finished)
+	toffee_man_manager.encounter_finished.connect(encounter_finished)
+	trick_ui_manager.disable_ui()
+	note_manager.disable_note()
 	await get_tree().create_timer(1).timeout
 	start_next_encounter()
 
@@ -18,8 +22,10 @@ func start_next_encounter() -> void:
 		return
 	
 	var char_data_array : Array[CharacterResource] = parse_encounter_data(EncounterOrder[_index])
-	character_manager.spawn_children(char_data_array, EncounterOrder[_index])
-	character_manager.start_timer(EncounterOrder[_index].timer)
+	var encounter_data : EncounterData = EncounterOrder[_index]
+	character_manager._timer = encounter_data.timer
+	character_manager.spawn_children(char_data_array, encounter_data)
+	character_manager.start_timer(encounter_data.timer)
 	
 	_index += 1
 
@@ -55,21 +61,19 @@ func parse_encounter_data(encounter_data : EncounterData) -> Array[CharacterReso
 				visitor.height = CharacterResource.HEIGHT_TYPE.RANDOM
 				array.push_back(visitor)
 		EncounterData.SPECIAL_ENCOUNTER.CANDYMAN1:
-			toffee_man_manager._appear_candyman()
+			toffee_man_manager.CANDYMAN1()
 			pass
 		EncounterData.SPECIAL_ENCOUNTER.CANDYMAN2:
-			toffee_man_manager._appear_candyman()
+			toffee_man_manager.CANDYMAN2()
 			pass
 		EncounterData.SPECIAL_ENCOUNTER.CANDYMAN3:
-			toffee_man_manager._appear_candyman()
+			toffee_man_manager.CANDYMAN3()
 			pass
 	return array
 
 func encounter_finished():
+	if _index == 1:
+		note_manager.enable_note()
 	await get_tree().create_timer(encounter_delay).timeout
 	start_next_encounter()
-
-func _on_toffeeman_encounter_finished():
-	toffee_man_manager._disappear_candyman()
-	await toffee_man_manager._disappear_candyman()
-	start_next_encounter()
+	

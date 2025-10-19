@@ -4,6 +4,7 @@ class_name NoteUiManager
 var _visible := false
 @export var flipped := false
 @export var note : ColorRect
+@export var note_button : Button
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
@@ -30,3 +31,11 @@ func flip():
 	else:
 		animation_player.play_backwards("page_flip")
 	flipped = not flipped
+
+func disable_note():
+	note_button.set_disabled(true)
+	hide()
+
+func enable_note():
+	note_button.set_disabled(false)
+	show()

@@ -2,7 +2,7 @@ extends Node2D
 class_name Character
 
 signal character_encounter_finished
-var _candy_business_finished := false
+var _click_finished := false
 var is_finished := false
 
 var take_candy : int
@@ -245,12 +245,13 @@ func respond_to_trick(trick_name: String):
 	reset_to_idle()
 
 func _on_detect_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
-	if _candy_business_finished:
+	if _click_finished:
 		return
 	var response_anim: AnimationPlayer = $response_anim
 	if Input.is_action_just_pressed("left_click"): #treat attempt
 		if char_data.is_monster:
 			response_sprite.frame = 0
+			GameState.scene_camera.shake()
 		else:
 			response_sprite.frame = 2
 		GameState.candies = GameState.candies - give_candy
@@ -261,12 +262,16 @@ func _on_detect_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx
 			response_sprite.frame = 1
 		else:
 			response_sprite.frame = 3
+			GameState.scene_camera.shake()
+			if char_data.penalty_increase:
+				GameState.toffeeman_increment += 2
+				GameState.toffeeman_cost += GameState.toffeeman_increment
 		GameState.candies = GameState.candies + take_candy
 		if char_data.trick_dialogue:
 			say_dialogue([char_data.trick_dialogue])
 	else:
 		return
-	_candy_business_finished = true
+	_click_finished = true
 	response_anim.play("response")
 	await response_anim.animation_finished
 	finish_character_encounter()

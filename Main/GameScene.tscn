@@ -43,7 +43,6 @@
 [ext_resource type="Script" uid="uid://i5r1s10uaohs" path="res://Utility/dialogue_box.gd" id="24_kidvh"]
 [ext_resource type="Texture2D" uid="uid://doeo64nuef31h" path="res://Assets/dialogue_box_sprite.png" id="25_52ur3"]
 [ext_resource type="FontFile" uid="uid://i2fcdnecftyh" path="res://Assets/CaveatBrush-Regular.ttf" id="26_ugay7"]
-[ext_resource type="AudioStream" uid="uid://4fpxxnb2l3bb" path="res://sfx/wood_creak1.wav" id="41_nij46"]
 [ext_resource type="AudioStream" uid="uid://tamuvlyyvv73" path="res://sfx/wood_creak2.wav" id="42_3qh5f"]
 [ext_resource type="Script" uid="uid://q3dwmqby7xjp" path="res://Main/camera_2d.gd" id="44_ep3cl"]
 
@@ -455,26 +454,26 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AudioStreamPlayer:stream")
+tracks/6/path = NodePath("AudioStreamPlayer:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [null]
+"values": [false]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("AudioStreamPlayer:playing")
+tracks/7/path = NodePath("AudioStreamPlayer:pitch_scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_eixk3"]
@@ -555,31 +554,60 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AudioStreamPlayer:stream")
+tracks/6/path = NodePath("AudioStreamPlayer:playing")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(2, 3.7333333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1.7333333, 3.2333333, 4.59),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("41_nij46"), ExtResource("42_3qh5f")]
+"values": [true, true, true]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("AudioStreamPlayer:playing")
+tracks/7/path = NodePath("AudioStreamPlayer:pitch_scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(1.9, 3.7),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1.69, 3.1333334, 3.2000003, 4.4666667, 4.59),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.75, 0.75, 1.36]
+}
+
+[sub_resource type="Animation" id="Animation_nij46"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ToffeeHead:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-231.99998, -368.99997)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ToffeeHead:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.5, 0.73333335, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, true]
+"values": [-2.4190264, -2.3395915, -2.6651177, -2.3395915, -2.4190264]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1w1yd"]
 _data = {
 &"RESET": SubResource("Animation_awsq4"),
+&"idle": SubResource("Animation_nij46"),
 &"toffeeMan appears": SubResource("Animation_eixk3")
 }
 
@@ -589,11 +617,13 @@ height = 868.0
 
 [node name="GameScene" type="Node2D"]
 
-[node name="EncounterManager" type="Node" parent="." node_paths=PackedStringArray("character_manager", "toffee_man_manager")]
+[node name="EncounterManager" type="Node" parent="." node_paths=PackedStringArray("character_manager", "toffee_man_manager", "trick_ui_manager", "note_manager")]
 script = ExtResource("1_nsa0f")
 EncounterOrder = Array[ExtResource("2_t24rv")]([ExtResource("3_wyx31"), ExtResource("4_4tksw"), ExtResource("5_ep3cl"), ExtResource("5_ep3cl"), ExtResource("5_ep3cl"), ExtResource("6_qp4ph"), ExtResource("7_nij46"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("9_8qyju"), ExtResource("5_ep3cl"), ExtResource("5_ep3cl"), ExtResource("10_h2rpr"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("11_6yoci"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("12_hmuuh"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("13_xdwu3"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("5_ep3cl"), ExtResource("14_qq12m"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("8_3qh5f"), ExtResource("5_ep3cl"), ExtResource("5_ep3cl"), ExtResource("15_6d5qv"), ExtResource("8_3qh5f"), ExtResource("5_ep3cl"), ExtResource("8_3qh5f"), ExtResource("16_3hp3f")])
 character_manager = NodePath("CharacterManager")
 toffee_man_manager = NodePath("../ToffeeManManager")
+trick_ui_manager = NodePath("../TrickUiManager")
+note_manager = NodePath("../NoteUiManager")
 
 [node name="CharacterManager" type="Node" parent="EncounterManager"]
 script = ExtResource("2_s1tig")
@@ -917,11 +947,12 @@ text = "3
 "
 label_settings = SubResource("LabelSettings_ae3o4")
 
-[node name="NoteUiManager" type="Node2D" parent="." node_paths=PackedStringArray("note")]
+[node name="NoteUiManager" type="Node2D" parent="." node_paths=PackedStringArray("note", "note_button")]
 z_index = 92
 position = Vector2(-10, 2)
 script = ExtResource("11_5rk2m")
 note = NodePath("ColorRect")
+note_button = NodePath("note_button")
 
 [node name="note_button" type="Button" parent="NoteUiManager"]
 offset_left = 767.0
@@ -1110,10 +1141,19 @@ libraries = {
 &"": SubResource("AnimationLibrary_nij46")
 }
 
-[node name="ToffeeManManager" type="Node2D" parent="." node_paths=PackedStringArray("trick_ui", "dialogue_holder")]
+[node name="ToffeeManManager" type="Node2D" parent="." node_paths=PackedStringArray("trick_ui", "dialogue_holder", "detection_area")]
 script = ExtResource("17_awsq4")
 trick_ui = NodePath("../TrickUiManager")
 dialogue_holder = NodePath("dialogue_holder")
+detection_area = NodePath("detect_toffeeman_area")
+candyman1_dialogue = Array[String](["Ahhh hullo! It seems you are new in this neighbourhood! ", " I am Tommy Toffee Man, a local around these parts.", "Oh where are my manners! Happy Halloween you vertically challenged bean!", " Now, may a tall one have some candy? I could kill for some right now."])
+candyman2_dialogue = Array[String](["Pleased to meet you again! I hope you didn’t waste your time in vain?", " Let me get to the point. I am here for some of your delicious candy!  "])
+candyman3_dialogue = Array[String](["The night draws to a close my friend, and I Fear that I Hunger again.", " Got some candy for me? "])
+candyman_fail_dialogue = Array[String](["Not enough candy,.,", "Ahhhh, a pity a pity, you failed to fulfil the treaty!", "You see, I need to have candy. And if you don’t have candy…", "You’ll become candy!"])
+candyman_trick_dialogue = Array[String](["I wouldn't try that if I were you..."])
+candyman1_treat_dialogue = Array[String](["Thank you good man thank you!", "I expect your exemplary hospitality should last the entire night, yes? ", "Tricks are powerful, I suggest you read that note again.", "Use your tricks and gather more candy for me!"])
+candyman2_treat_dialogue = Array[String](["Ohhhh thank you for the candy.", " I was famished! Not anymore though.", "Though I might hunger again…"])
+candyman3_treat_dialogue = Array[String](["Thank you for the candy. Now, the age old question of Halloween…", "TRICK OR TREAT? "])
 
 [node name="ToffeeHands" type="Sprite2D" parent="ToffeeManManager"]
 visible = false
@@ -1146,9 +1186,9 @@ libraries = {
 }
 
 [node name="dialogue_holder" parent="ToffeeManManager" node_paths=PackedStringArray("init_text_box") instance=ExtResource("23_6trmk")]
-visible = false
 position = Vector2(-283, -262)
 text_position = Vector2(380, 500)
+display_time = 3
 init_text_box = NodePath("DialogueBox")
 
 [node name="DialogueBox" type="MarginContainer" parent="ToffeeManManager/dialogue_holder" node_paths=PackedStringArray("label", "letter_display_timer")]
@@ -1187,13 +1227,13 @@ vertical_alignment = 1
 one_shot = true
 
 [node name="detect_toffeeman_area" type="Area2D" parent="ToffeeManManager"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ToffeeManManager/detect_toffeeman_area"]
 position = Vector2(-303, 33)
 shape = SubResource("CapsuleShape2D_ep3cl")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ToffeeManManager"]
+stream = ExtResource("42_3qh5f")
 
 [node name="EnvironmentVisuals" type="Node2D" parent="."]
 z_index = -5
