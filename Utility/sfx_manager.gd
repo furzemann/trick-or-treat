@@ -3,7 +3,7 @@ extends Node
 @export var sfx: Dictionary[String, AudioStream]
 @export var random_characters_sound: Array[AudioStream] = []
 @export var singing_sfx: Array[AudioStream] = []
-
+@export var candyman_voice_break_sequence : Array[float]
 var active_players: Array[AudioStreamPlayer] = []
 
 func play_sfx(sfx_name: String, volume_db: float = 0.0, randomised_pitch: bool = false, pitch:=randf_range(0.8,1.2) , playback_start: float = 0.0, playback_end:= sfx[sfx_name].get_length()) -> void:
@@ -17,7 +17,6 @@ func play_sfx(sfx_name: String, volume_db: float = 0.0, randomised_pitch: bool =
 		return
 
 	_play_stream(stream, volume_db, randomised_pitch, pitch, playback_start, playback_end)
-
 
 func random_npc_sounds(randomised_pitch: bool = false, volume_db: float = 0.0, pitch := randf_range(0.5,1.5)) -> void:
 	if random_characters_sound.is_empty():
@@ -41,6 +40,23 @@ func sing(randomised_pitch:bool = false, volume_db: float = 0.0, pitch:= randf_r
 		return
 
 	_play_stream(stream, volume_db, randomised_pitch, pitch,playback_start, playback_end)
+	
+func voice_of_candyman(voice_length : float, volume_db:= 0.0):
+	var curr_voice_length : float = 0.0
+	while curr_voice_length <= voice_length:
+		var e = candyman_voice_break_sequence.pick_random()
+		var s = candyman_voice_break_sequence.pick_random()
+		if (e-s) < 0:
+			var temp = e
+			e = s
+			s = temp
+		
+		if e == 4.71 and s == 2.94:
+			continue
+		if e==2.94 and s==6.98:
+			continue
+		play_sfx('candyman', volume_db, true, randf_range(0.7,1.1), s, e)
+		curr_voice_length += e - s
 	
 func _play_stream(stream: AudioStream, volume_db: float, randomised_pitch: bool, pitch:=randf_range(0.8,1.2), playback_start: float = 0.0, playback_end := stream.get_length()) -> void:
 	var player := AudioStreamPlayer.new()

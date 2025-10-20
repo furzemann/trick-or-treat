@@ -1,6 +1,7 @@
 extends Node2D
 class_name ToffeeManManager
 
+@export var gameover_scene : PackedScene
 @export var trick_ui : TrickUiManager
 @export var dialogue_holder : DialogueHolder
 @export var detection_area : Area2D
@@ -23,6 +24,10 @@ signal anim_finished
 
 func _ready():
 	_disable_detector()
+	dialogue_holder.dialogue_started.connect(_on_dialogue_started)
+
+func _on_dialogue_started():
+	SfxManager.voice_of_candyman(8.)
 
 func CANDYMAN1():
 	_appear_candyman()
@@ -55,7 +60,7 @@ func CANDYMAN3():
 
 
 func _appear_candyman():
-	MusicManager.pause_theme(-80)
+	MusicManager.play_theme('candyman_theme')
 	trick_ui.disable_ui()
 	$AnimationPlayer.play("toffeeMan appears")
 	await $AnimationPlayer.animation_finished
@@ -63,16 +68,16 @@ func _appear_candyman():
 	anim_finished.emit()
 
 func _disappear_candyman():
+	MusicManager.play_theme('theme2')
 	$AnimationPlayer.play_backwards("toffeeMan appears")
 	await $AnimationPlayer.animation_finished
-	MusicManager.resume_theme()
 	anim_finished.emit()
 	trick_ui.enable_ui()
 
 func _on_gameover():
-	print("GameOver")
+	get_tree().change_scene_to_packed(gameover_scene)
 
-func _on_detect_toffeeman_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_detect_toffeeman_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) -> void:
 	if Input.is_action_just_pressed("left_click"):
 		_disable_detector()
 		var fail : bool = GameState.toffeeman_cost > GameState.candies

@@ -68,3 +68,4 @@ sfx = Dictionary[String, AudioStream]({
 })
 random_characters_sound = Array[AudioStream]([ExtResource("11_h001m"), ExtResource("12_2fktp"), ExtResource("14_v3e5t"), ExtResource("15_ay4cg")])
 singing_sfx = Array[AudioStream]([ExtResource("33_82esq"), ExtResource("34_o2642"), ExtResource("35_rj8ho")])
+candyman_voice_break_sequence = Array[float]([0.0, 2.94, 4.71, 6.89, 8.72, 0.0])

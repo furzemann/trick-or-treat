@@ -1,6 +1,7 @@
 extends Node2D
 class_name DialogueHolder
 
+signal dialogue_started
 signal dialogue_finished
 
 var _current_script : Array[String]
@@ -37,6 +38,7 @@ func _next_line():
 		_end_dialogue()
 		return
 	
+	dialogue_started.emit()
 	if text_box:
 		text_box.queue_free()
 
