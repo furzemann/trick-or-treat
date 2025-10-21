@@ -1,37 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://rnt2ha4hvfky"]
+[gd_scene load_steps=12 format=3 uid="uid://rnt2ha4hvfky"]
 
 [ext_resource type="Script" uid="uid://bekbpewcymaih" path="res://gameover.gd" id="1_kctv7"]
 [ext_resource type="Texture2D" uid="uid://cq1ovs0j5r1si" path="res://Assets/render_bg.png" id="1_tpdqf"]
-[ext_resource type="PackedScene" uid="uid://bcmy55rouaxrl" path="res://Main/GameScene.tscn" id="2_2nw6q"]
 [ext_resource type="Texture2D" uid="uid://b7a2hd3lletyh" path="res://Assets/render_fg.png" id="2_eeur3"]
 [ext_resource type="FontFile" uid="uid://c6cgedb5ppjas" path="res://Assets/Quasimodo Regular.ttf" id="3_eeur3"]
-
-[sub_resource type="Animation" id="Animation_kctv7"]
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Retry:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Retry:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_eeur3"]
 resource_name = "label_show"
@@ -43,34 +15,25 @@ tracks/0/path = NodePath("Label:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8333333),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(2.3784146, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Retry:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.96666664),
+
+[sub_resource type="Animation" id="Animation_kctv7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Retry:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.9666667),
-"transitions": PackedFloat32Array(6.276669, 1.6817931),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2nw6q"]
@@ -81,16 +44,14 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eeur3"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nw6q"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kctv7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2nw6q"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w3x71"]
 
-[node name="Gameover" type="Node2D" node_paths=PackedStringArray("retry_button")]
+[node name="Gameover" type="Node2D"]
 script = ExtResource("1_kctv7")
-main_game_scene = ExtResource("2_2nw6q")
-retry_button = NodePath("Retry")
 
 [node name="EnvironmentVisuals" type="Node2D" parent="."]
 z_index = -5
@@ -103,7 +64,6 @@ texture = ExtResource("1_tpdqf")
 texture = ExtResource("2_eeur3")
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0)
 offset_left = -432.0
 offset_top = -136.0
 offset_right = 412.0
@@ -130,9 +90,9 @@ offset_bottom = 135.0
 theme_override_fonts/font = ExtResource("3_eeur3")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxEmpty_eeur3")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_2nw6q")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_kctv7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2nw6q")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_w3x71")
 text = "Retry?"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[connection signal="button_down" from="Retry" to="." method="_on_retry_button_down"]
