@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dyplgrkb531ke" path="res://Utility/sfx_manager.gd" id="1_onrww"]
 [ext_resource type="AudioStream" uid="uid://w7r562trqvb7" path="res://sfx/book_close.wav" id="2_khaoa"]
+[ext_resource type="AudioStream" uid="uid://bw1se88pra27q" path="res://sfx/npc_voices/angry_grunt.wav" id="2_rgkax"]
 [ext_resource type="AudioStream" uid="uid://choxkeyh8el3p" path="res://sfx/book_open.wav" id="3_8k0g3"]
 [ext_resource type="AudioStream" uid="uid://ddl6e17pv36v3" path="res://sfx/candyman_voice2.wav" id="6_o2642"]
 [ext_resource type="AudioStream" uid="uid://cevw1qm22pggw" path="res://sfx/ghost_spooky.wav" id="7_rj8ho"]
@@ -19,7 +20,6 @@
 [ext_resource type="AudioStream" uid="uid://c5kfgjxk2cjy8" path="res://sfx/ui_sfx.wav" id="15_pwbjs"]
 [ext_resource type="AudioStream" uid="uid://cg0pgoh0q1c27" path="res://sfx/ui_sfx2.wav" id="16_82esq"]
 [ext_resource type="AudioStream" uid="uid://bokkf21yliwx7" path="res://sfx/werewolf2.wav" id="17_7kaac"]
-[ext_resource type="AudioStream" uid="uid://cl83ahb237kuh" path="res://sfx/angry_grunt.wav" id="17_h001m"]
 [ext_resource type="AudioStream" uid="uid://betl03c0obqw3" path="res://sfx/button_hover.wav" id="18_2fktp"]
 [ext_resource type="AudioStream" uid="uid://1vvhm0pnp20p" path="res://sfx/werewolf.wav" id="18_3ky47"]
 [ext_resource type="AudioStream" uid="uid://u0iqvmlsdhpc" path="res://sfx/candy.wav" id="19_rgkax"]
@@ -45,7 +45,7 @@ tags = {
 [node name="SfxManager" type="Node"]
 script = ExtResource("1_onrww")
 sfx = Dictionary[String, AudioStream]({
-"angry_grunt": ExtResource("17_h001m"),
+"angry_grunt": ExtResource("2_rgkax"),
 "book_close": ExtResource("2_khaoa"),
 "book_open": ExtResource("3_8k0g3"),
 "button_hover": ExtResource("18_2fktp"),
@@ -55,6 +55,7 @@ sfx = Dictionary[String, AudioStream]({
 "candyman3": SubResource("AudioStreamWAV_h001m"),
 "child_leave": ExtResource("9_v5y0q"),
 "ghost_spooky": ExtResource("7_rj8ho"),
+"happy _grunt": ExtResource("15_ay4cg"),
 "knock": ExtResource("8_6ih83"),
 "page_turn": ExtResource("10_1q0dh"),
 "pop_up": ExtResource("11_o2d78"),
