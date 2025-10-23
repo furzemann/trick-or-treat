@@ -1419,4 +1419,7 @@ libraries = {
 }
 autoplay = "RESET"
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="input_event" from="Body_Parent/detect_area" to="." method="_on_detect_area_input_event"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

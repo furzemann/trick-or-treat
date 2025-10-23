@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d26g57un6eifm"]
+[gd_scene load_steps=13 format=3 uid="uid://d26g57un6eifm"]
 
 [ext_resource type="Texture2D" uid="uid://cq1ovs0j5r1si" path="res://Assets/render_bg.png" id="1_vrvlg"]
 [ext_resource type="Script" uid="uid://yidcydr1n00u" path="res://Main/main_menu.gd" id="1_vw6x6"]
@@ -17,12 +17,20 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_disks"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_3mueg"]
+font = ExtResource("4_l00uc")
+font_size = 200
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.5529412)
+shadow_offset = Vector2(6.965, 1)
+
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("start_Button")]
 script = ExtResource("1_vw6x6")
 start_Button = NodePath("Start")
 next_scene = ExtResource("2_3mueg")
 
 [node name="EnvironmentVisuals" type="Node2D" parent="."]
+modulate = Color(0.68307734, 0.6830774, 0.68307734, 1)
 z_index = -5
 
 [node name="RenderBg" type="Sprite2D" parent="EnvironmentVisuals"]
@@ -57,9 +65,6 @@ offset_left = -496.0
 offset_top = -296.0
 offset_right = 545.0
 offset_bottom = 67.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 14
-theme_override_fonts/font = ExtResource("4_l00uc")
-theme_override_font_sizes/font_size = 200
 text = "Trick of
 the Treat"
+label_settings = SubResource("LabelSettings_3mueg")

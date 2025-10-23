@@ -39,7 +39,7 @@ var give_candy : int
 
 @export var dialogue_holder : DialogueHolder
 @onready var anim_player: AnimationPlayer = $anim_player
-@onready var voice_pitch := randf_range(0.5,1.3)
+@onready var voice_pitch := randf_range(0.8, 1.)
 
 
 func rand_chance(probability: float) -> bool:
@@ -61,6 +61,8 @@ func _ready() -> void:
 	SfxManager.play_sfx("pop_up",0.0,true)
 	reset_to_idle()
 	dialogue_holder.hide()
+	$Timer.wait_time = randf_range(0.2, 1.5)
+	$Timer.start()
 
 func reset_to_idle():
 	anim_player.queue("RESET")
@@ -279,3 +281,8 @@ func _on_detect_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx
 func get_angry():
 	if not anger_particles.emitting:
 		anger_particles.emitting = true
+
+
+func _on_timer_timeout() -> void:
+	$Timer.wait_time = randf_range(1., 2.)
+	SfxManager.random_npc_sounds(true, 10.)
